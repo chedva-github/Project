@@ -1,0 +1,29 @@
+.input {
+    position: 100px 50px;  
+    /* top: 150%;
+    right: 10%;
+    width: 15%;  */
+    height:auto;  
+ 
+  }
+  .topcorner{
+    position:absolute;
+    top: 150px;;
+    right:0;
+    
+   }
+  datalist option {
+    font-size: 0.8em;
+    padding: 0.3em 1em;
+    /* background-color: #ccc; */
+    cursor: pointer;
+  }
+  
+  /* option active styles */
+  datalist option:hover, datalist option:focus {
+    color: rgb(206, 61, 61);
+    background-color: #036;
+    outline: 0 none;
+  }
+
+
