@@ -91,7 +91,7 @@ export default function Location(props) {
                             }
                     </datalist>
                 </div>
-              <button disabled={!street||!date||!size} onClick={()=>navigate({pathname:'/orderPage',state:{street:street,size:size,date:date}})}></button>
+              <button disabled={!street||!date||!size} onClick={()=>navigate("/OrderDetails",{state:{street:street,size:size,date:date}})}></button>
             </div>
         </div>
 

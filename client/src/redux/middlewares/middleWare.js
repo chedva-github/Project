@@ -107,5 +107,42 @@ export const middle = store => next => async (action) => {
       .catch(error => console.log('error', error));
   }
 else
+if(action.type == 'CREATE_RENT_TO_USER'){
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  
+  var raw = JSON.stringify(action.payload);
+  
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:4000/createrentToUser", requestOptions)
+    .then(response => response.json())
+    .then(result => {console.log(result)
+    action.payload = result.newRentToUser
+    return next(action)
+    })
+    .catch(error => console.log('error', error));
+}
+else
+if(action.type == "GET_ALL_USERS"){
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("http://localhost:4000/getAllUsers", requestOptions)
+    .then(response => response.json())
+    .then(result => {console.log(result)
+      action.payload = result
+      return next(action)
+    })
+    .catch(error => console.log('error', error));
+}
+else
 return next(action)
 }

@@ -61,5 +61,11 @@ const deleteUser = (req, res) => {
             res.status(500).send(err.message))
 }
 
+const getAllUsers =(req,res)=>{
+    User.find()
+    .then(users=>res.send(users))
+    .catch(err=>res.send(err))
+}
 
-module.exports = { createUser, getUser, updateUser, deleteUser, getUserByNameAndPassword }
+
+module.exports = { createUser, getUser, updateUser, deleteUser, getUserByNameAndPassword,getAllUsers }

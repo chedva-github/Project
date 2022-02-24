@@ -13,7 +13,6 @@ const user = {
     createUser(state,action){
         debugger
         state.currentUser = action.payload
-        // alert(JSON.stringify(state.currentUser))
     },
     getUser(state,action){
     state.users.push(action.payload)
@@ -27,6 +26,11 @@ const user = {
     },getOrderByCustomerId(state,action){
       state.userOrders = action.payload
     //   alert(JSON.stringify(state.userOrders))
+    },createRentToUser(state,action){
+        if(action.payload)
+        state.userOrders.push(action.payload)
+    },getAllUsers(state,action){
+        state.users = action.payload
     }
     ,initialState
 }
