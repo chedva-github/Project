@@ -1,53 +1,125 @@
 const AdvertisingPoint = require('../models/advertisingPoint')
+const Street = require('../models/street')
+const Size = require('../models/size')
 
 const createUAdvertisingPoint = async (req, res) => {
-    console.log("create AdvertisingPoint")
-    const AdvertisingPointObj = new AdvertisingPoint(req.body)
-    try {
-        const newAdvertisingPoint = await AdvertisingPointObj.save()
-        res.status(200).json({ message: "new AdvertisingPoint created succesfully", newAdvertisingPoint: newAdvertisingPoint })
-    }
-    catch (err) {
-        res.status(500).send(err.message)
-    }
+  console.log('create AdvertisingPoint', req.body)
+
+  let address = await Street.findOne({"streetName":req.body.address})
+  if(!address) {address = new Street({ streetName: req.body.address })
+  await address.save()}
+  let size = await Size.findOne({"sizeName":req.body.size})
+  if(!size) {address = new Street({ sizeName: req.body.size })
+  await size.save()}
+  const AdvertisingPointObj = new AdvertisingPoint({
+    address: address.id,
+    size: size._id,
+    price: req.body.price,
+    status: req.body.status
+  })
+  try {
+     await AdvertisingPointObj.save()
+    const newAdvertisingPointafterPopulate =await AdvertisingPoint.findOne({"_id":AdvertisingPointObj._id}).populate('address')
+      res.status(200).json({
+      message: 'new AdvertisingPoint created succesfully',
+      newAdvertisingPoint: newAdvertisingPointafterPopulate
+    })
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
 }
 
 const getAdvertisingPoint = async (req, res) => {
-    console.log("get AdvertisingPoint")
-    try {
-        const AdvertisingPointObj = AdvertisingPoint.findById(req.params.id)
-        if (AdvertisingPointObj)
-            res.status(200).json({ AdvertisingPoint: AdvertisingPointObj })
-        else
-            res.status(404).send("AdvertisingPoint not exist")
-    }
-    catch (err) {
-        res.status(500).send(err.message)
-    }
+  console.log('get AdvertisingPoint')
+  try {
+    const AdvertisingPointObj = AdvertisingPoint.findById(req.params.id)
+    console.log('AdvertisingPointObj', AdvertisingPointObj)
+    if (AdvertisingPointObj)
+      res.status(200).json({ AdvertisingPoint: AdvertisingPointObj })
+    else res.status(404).send('AdvertisingPoint not exist')
+  } catch (err) {
+    res.status(500).send(err.message)
+  }
 }
+const updateAdvertisingPoint = async (req, res) => {
+  console.log('update AdvertisingPoint', req.body)
+  //   let streetUpdate=''
+  //   await Street.findOne({'streetName': req.body.address }, function (s, err) {
+  //     console.log('APPERROR', err)
+  //     streetUpdate = err
+  //     console.log('APP', s)
+  //   })
+  // console.log("AP",street);
 
+  //   const size = Size.findOne({ sizeName: req.body.size })
 
-const updateAdvertisingPoint = (req, res) => {
-    console.log("update AdvertisingPoint")
-    User.findByIdAndUpdate(req.body._id, req.body, { new: true })
-        .then(AdvertisingPoint => {
-            res.status(200).json({ AdvertisingPoint: AdvertisingPoint })
-        }).catch(err =>
-            res.status(500).send(err.message))
+  AdvertisingPoint.findOneAndUpdate(
+    { _id: req.body._id },
+    {
+      $set: {
+        // address: streetUpdate.streetName,
+        status: req.body.status,
+        price: req.body.price
+      }
+    },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        res.status(500).send(err)
+      }
+      console.log('getalladvaterpoint')
+      AdvertisingPoint.find()
+        .populate('size')
+        .populate('address')
+        .then(ad => {
+          res.status(200).send(ad)
+        })
+        .catch(err => res.send(err))
+    }
+  )
+  // .then((b) =>
+  //     console.log("😎",b)
+
+  // )
+
+  // .then(AdvertisingPoint => {
+  //     console.log("up",advertisingPoint)
+  //     res.status(200).json({ AdvertisingPoint: AdvertisingPoint })
+  // }).catch(err =>{
+  //      console.log("uperr",err)
+
+  //     res.status(500).send(err.message)})
 }
 
 const deleteAdvertisingPoint = (req, res) => {
-    console.log("delete AdvertisingPoint")
-    AdvertisingPoint.findByIdAndDelete(req.params.id)
-        .then(AdvertisingPoint => {
-            res.status(200).json({ message: "AdvertisingPoint deleted succesfully", user: user })
-        }).catch(err =>
-            res.status(500).send(err.message))
-}
- 
-const getAllAdvertisingPoint = (req,res)=>{
-    AdvertisingPoint.find().then(ad=>res.send(ad))
-    .catch(err=>res.send(err))
+  console.log('delete AdvertisingPoint')
+  AdvertisingPoint.findByIdAndDelete(req.params.id)
+    .then(async () => {
+      await AdvertisingPoint.find()
+        .populate('size')
+        .populate('address')
+        .then(ad => {
+          res.status(200).send(ad)
+        })
+    })
+    .catch(err => res.send(err))
 }
 
-module.exports  = { createUAdvertisingPoint, getAdvertisingPoint, updateAdvertisingPoint, deleteAdvertisingPoint,getAllAdvertisingPoint }
+const getAllAdvertisingPoint = (req, res) => {
+  console.log('getalladvaterpoint')
+  AdvertisingPoint.find()
+    .populate('size')
+    .populate('address')
+    .then(ad => {
+      res.send(ad)
+    })
+    .catch(err => res.send(err))
+}
+
+module.exports = {
+  createUAdvertisingPoint,
+  getAdvertisingPoint,
+  updateAdvertisingPoint,
+  deleteAdvertisingPoint,
+  getAllAdvertisingPoint
+}

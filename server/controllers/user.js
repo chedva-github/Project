@@ -2,26 +2,32 @@ const mongoose = require('mongoose')
 const User = require('../models/user')
 
 const createUser = async (req, res) => {
-    console.log("create user")
+    console.log("create user",req.body)
     const user = new User(req.body)
-    try {
+ try {
         const newUser = await user.save()
+                console.log("😁😁",newUser)
+
         res.status(200).json({ message: "new user created succesfully", newUser: newUser })
     }
     catch (err) {
+        console.log("err",err)
         res.status(500).send(err.message)
     }
 }
 const getUserByNameAndPassword = async (req, res) => {
-    console.log("get user by name")
+    console.log(" 😪 get user by name",req.body.name)
     try {
         const user = await User.findOne({ name: req.body.name, pasword: req.body.pasword })
+        console.log("user",user)
         if (user)
             res.status(200).json({ user: user })
         else
-            res.status(404).send("user not exist")
+            res.status(400).send("user not exist")
     }
     catch (err) {
+                console.log("err",err)
+
         res.status(500).send(err.message)
     }
 }

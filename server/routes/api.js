@@ -6,6 +6,7 @@ const rentToUser = require('../controllers/rentToUser')
 const AdvertisingPoint = require('../controllers/AdvertisingPoint')
 const streets = require('../controllers/street')
 const size = require('../controllers/size')
+const orderController = require('../controllers/orderController')
 
 
 router.post('/createarea', area.createArea)
@@ -35,11 +36,14 @@ router.get('/getRentToUserByUserId/:id', rentToUser.getRentToUserByUserId)
 router.post('/createAdvertisingPoint', AdvertisingPoint.createUAdvertisingPoint)
 router.get('getAdvertisingPoint/:id', AdvertisingPoint.getAdvertisingPoint)
 router.put('/updateAdvertisingPoint', AdvertisingPoint.updateAdvertisingPoint)
-router.delete('/deleteAdvertisingPoint/:id', AdvertisingPoint.deleteAdvertisingPoint)
+router.post('/deleteAdvertisingPoint/:id', AdvertisingPoint.deleteAdvertisingPoint)
 router.get('/getAllAdvertisingPoint', AdvertisingPoint.getAllAdvertisingPoint)
 
 router.get('/getAllStreets', streets.getAllStreets)
 router.get('/getAllSize', size.getAllSize)
 router.post('/insertSize',size.insertSize)
+
+router.post('/createOrder',orderController.createOrder)
+
 
 module.exports = router
