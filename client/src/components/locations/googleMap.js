@@ -8,7 +8,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
    const data = useSelector(state => state.AdvertisingPoint)
 
    useEffect(() => {
-    debugger
+    // debugger
     dispatch(action.getAllAdvertisingPoint())
    }, [])
 

@@ -11,6 +11,7 @@ import Customers from '../components/customers/customers'
  import MapGoogle from '../components/locations/googleMap'
 import Orders from '../components/admin/orders'
 import PersonlArea from '../components/privateArea/privateArea'
+import OrderPage from '../components/orderPage/orderPage'
 
 import {useSelector} from 'react-redux'
 
@@ -32,6 +33,8 @@ export default function Routers(){
              <Route path="/Locations" element={<Locations/>}/>
              <Route path="/customers" element={<Customers/>}/>
              <Route path="/" element={<Home/>}/>
+              <Route path="/orderPage" element={<OrderPage/>}/>
+
              </Routes>
              </Router>
              </>

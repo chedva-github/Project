@@ -2,7 +2,7 @@ const actions = new Proxy(
     {},
     {
       get: function (target, prop) {
-        debugger
+        // debugger
         if (target[prop] === undefined)
           return function (args) {
             return { type: convertActionName(prop), payload: args };
@@ -13,7 +13,7 @@ const actions = new Proxy(
   );
   
   function convertActionName(actionName){
-    debugger
+    // debugger
     return actionName.replace(/([A-Z])/g, "_$1").toUpperCase();
   }
   

@@ -8,7 +8,7 @@ const initialState = {
 const size = {
     getAllSize(state,action){
         console.log("payload", action.payload)
-        debugger
+        // mdebugger
         state.size = action.payload
         // alert(JSON.stringify(state.currentUser))
     }

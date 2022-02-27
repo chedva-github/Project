@@ -20,13 +20,10 @@ export default function Login() {
     async function initUser(form) {
         form.preventDefault()
         console.log("i a here!", form)
-        debugger;
         let user = {}
         user.name = name
         user.password = password
-        debugger;
         // const res = await getUserById(user.name);
-        debugger;
         // console.log(res);
         dispatch(action.login(user))
     }

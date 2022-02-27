@@ -1,4 +1,7 @@
 import axios from "axios"
+import { useNavigate } from 'react-router-dom'
+
+
 
 export const middle = store => next => async (action) => {
 
@@ -14,7 +17,7 @@ export const middle = store => next => async (action) => {
       body: raw,
       redirect: 'follow'
     };
-    debugger
+    
     fetch("http://localhost:4000/createUser", requestOptions)
       .then(response => response.json())
       .then(result => {
@@ -36,7 +39,6 @@ export const middle = store => next => async (action) => {
       body: raw1,
       redirect: 'follow'
     }
-    debugger
     fetch("http://localhost:4000/getUserByNameAndPassword", requestOptions1)
       .then(response => response.json())
       .then(result => {
@@ -49,7 +51,7 @@ export const middle = store => next => async (action) => {
 
   else if (action.type == "GET_ALL_STREETS") {
     try {
-      debugger;
+      // debugger;
       console.log("i am  here")
       const res = await axios.get('http://localhost:4000/getAllStreets')
       console.log("res", res.data)
@@ -62,7 +64,7 @@ export const middle = store => next => async (action) => {
   }
   else if (action.type == "GET_ALL_SIZE") {
     try {
-      debugger;
+      // debugger;
       console.log("i am  here")
       const res = await axios.get('http://localhost:4000/getAllSize')
       console.log("res", res.data)
@@ -75,7 +77,7 @@ export const middle = store => next => async (action) => {
   }
  else if (action.type == "GET_ALL_ADVERTISING_POINT") {
     try {
-      debugger;
+      // debugger;
       console.log("i am  here")
       const res = await axios.get('http://localhost:4000/getAllAdvertisingPoint')
       console.log("res", res.data)
@@ -97,7 +99,7 @@ export const middle = store => next => async (action) => {
     
   }
  else if(action.type == 'GET_ORDER_BY_CUSTOMER_ID'){
-    debugger
+    // debugger
     fetch("http://localhost:4000/getRentToUserByUserId/"+action.payload)
       .then(response => response.json())
       .then(result => {console.log(result)
@@ -106,6 +108,86 @@ export const middle = store => next => async (action) => {
       })
       .catch(error => console.log('error', error));
   }
+ else if(action.type == 'ADD_BILLBOARD'){
+   //הוספת שלט עי המנהל
+      var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(action.payload);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch("http://localhost:4000/createAdvertisingPoint", requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result)
+      action.payload = result.newAdvertisingPoint
+      return next(action)
+      })
+      .catch(error => console.log('error', error));
+  }
+  else if(action.type == 'EDIT_BILLBOARD'){
+   //עריכת  שלט עי המנהל
+      var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify(action.payload);
+
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    fetch("http://localhost:4000/updateAdvertisingPoint", requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result)
+       action.payload = result
+      return next(action)
+      })
+      .catch(error => console.log('error', error));
+  }
+   else if(action.type == 'DELETE_ONE_ADVERTISING_POINT'){
+        var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    alert("myHead")
+    // var raw = JSON.stringify(action.payload);
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    fetch(`http://localhost:4000/deleteAdvertisingPoint/${action.payload}`, requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result)
+       action.payload = result
+      return next(action)
+      })
+      .catch(error => console.log('error', error));
+  }
+   else if(action.type == 'ADD_ORDER'){
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+   var raw = JSON.stringify(action.payload);
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body:raw,
+      redirect: 'follow'
+
+    };
+    fetch(`http://localhost:4000/createOrder`, requestOptions)
+      .then(response => response.json())
+      .then(result => {console.log(result)
+      //  action.payload = result
+      return next(action)
+      })
+      .catch(error => console.log('error', error));
+  }
+  // addOrder 
 else
 return next(action)
 }

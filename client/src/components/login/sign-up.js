@@ -9,7 +9,7 @@ export default function SignUp() {
 
     function initUser(form) {
         form.preventDefault()
-        debugger
+        // debugger
         let user = {}
         user.name = form.target.name.value;
         user.password = form.target.password.value;

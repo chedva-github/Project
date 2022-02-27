@@ -9,7 +9,7 @@ export const getUserById = (id) => {
         redirect: 'follow'
     };
     try {
-        debugger;
+        // debugger;
         fetch("http://localhost:4000/getUser/61912e1ae1c8a95a4967a277", requestOptions)
             .then(response => response.json())
             .then(result => {

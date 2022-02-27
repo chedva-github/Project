@@ -11,7 +11,7 @@ const initialState = {
 
 const user = {
     createUser(state,action){
-        debugger
+        // debugger
         state.currentUser = action.payload
         // alert(JSON.stringify(state.currentUser))
     },
@@ -19,14 +19,12 @@ const user = {
     state.users.push(action.payload)
     },
     login(state,action){
-        debugger
         state.currentUser = action.payload
         if(state.currentUser.password == state.adminAuth)
         state.isAdmin = true
-    //    alert(JSON.stringify(state.currentUser))
-    },getOrderByCustomerId(state,action){
+    },
+    getOrderByCustomerId(state,action){
       state.userOrders = action.payload
-    //   alert(JSON.stringify(state.userOrders))
     }
     ,initialState
 }
