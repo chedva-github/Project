@@ -9,7 +9,7 @@ const createUAdvertisingPoint = async (req, res) => {
   if(!address) {address = new Street({ streetName: req.body.address })
   await address.save()}
   let size = await Size.findOne({"sizeName":req.body.size})
-  if(!size) {address = new Street({ sizeName: req.body.size })
+  if(!size) {size = new Size({ sizeName: req.body.size })
   await size.save()}
   const AdvertisingPointObj = new AdvertisingPoint({
     address: address.id,

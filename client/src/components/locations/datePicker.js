@@ -13,6 +13,7 @@ export default function DateRange() {
   const dispatch = useDispatch()
 const onDateChange=(date)=>{
 console.log(date);
+setValue(date)
 dispatch(action.setDate(date))
 
 }

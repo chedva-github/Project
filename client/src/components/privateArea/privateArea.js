@@ -45,16 +45,18 @@ export default function PrivateArea(){
               {/* : null} */}
         {show ? <AddBillBoard prop='new'/> : null}
 
-
+<table>
         {data?.user?.userOrders?.map((item,index)=>(
-            <div key={index} style={{border:'solid black 1px',width:'40%'}}>
-                <h5>רחוב: {data?.streets?.streets?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).address)?.streetName }</h5>
-                <h5>תאריך התחלה: {item.startDate.split('T')[0]}</h5>
-                <h5>תאריך סיום: {item.endDate.split('T')[0]}</h5>
-                <h5>גודל: {data?.size?.size?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).size)?.sizeName }</h5>
-            </div>
+            <tr key={index} style={{border:'solid black 1px',width:'40%'}}>
+                <td>{data?.streets?.streets?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).address)?.streetName }</td>
+                <td>{item.startDate.split('T')[0]}</td>
+                <td>{item.endDate.split('T')[0]}</td>
+                <td>{data?.size?.size?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).size)?.sizeName }</td>
+                <td>{item.paymentNum}</td>
+            </tr>
 
         ))}
+        </table>
         </>
     )
 }

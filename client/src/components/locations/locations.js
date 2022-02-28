@@ -14,18 +14,15 @@ export default function Location (props) {
   const data = useSelector(state => state)
   const [arrSize, setArrSize] = useState()
   const [size, setSize] = useState()
-  const [arrStreet, setArrStreet] = useState()
+  const [arrStreet, setArrStreet] = useState([])
   const [street, setStreet] = useState()
   const [date, setDate] = useState()
   const navigate = useNavigate()
 
   useEffect(async () => {
-    // debugger
     await dispatch(action.getAllStreets())
     await dispatch(action.getAllSize())
   }, [])
-
-  //props?.location?.state?.street
 
   useEffect(() => {
     setArrSize(data?.size?.size)
@@ -36,9 +33,11 @@ export default function Location (props) {
 
     setArrStreet(streets)
   }, [data.streets?.streets])
+
   const handleChangAddress = () => {
     alert('ssd')
   }
+
   function sortStreet (size) {
     var streetFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
@@ -73,42 +72,33 @@ export default function Location (props) {
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
   }
-const submit=async()=>{
- const currentAP=await data.AdvertisingPoint.advertisingPoint.filter(x=>x.address._id==data.order.orderStreet._id&&x.size._id==data.order.orderSize._id)
- console.log('currentAP',currentAP);
-  dispatch(action.setCurrentAdvertstingPoint(currentAP))
-    navigate( '/orderPage')
-         
-}
+  const submit = async () => {
+    const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
+      x =>
+        x.address._id == data.order.orderStreet._id &&
+        x.size._id == data.order.orderSize._id
+    )
+    console.log('currentAP', currentAP)
+    if(currentAP.status==1)
+    dispatch(action.setCurrentAdvertstingPoint(currentAP))
+    else alert('שלט זה תפוס כבר')
+    navigate('/orderPage')
+  }
   return (
     <div>
       <MyMapComponent></MyMapComponent>
 
-      <div className='topcorner'>
-        <div>Location</div>
-        <DateRange />
-        {/* <div>
-          <input
-            type='date'
-            min='2021-12-21'
-            max='3000-01-01'
-            onChange={e => setDate(e.target.value)}
-          /> */}
-        {/* <input list="ice-cream-flavors" id="ice-cream-choice" name="ice-cream-choice" type="date" placeholder="תאריך" />
-                    <datalist id="ice-cream-flavors">
-                        <option value="Chocolate" />
-                        <option value="Coconut" />
-                        <option value="Mint" />
-                        <option value="Strawberry" />
-                        <option value="Vanilla" />
-                    </datalist> */}
-        {/* </div> */}
+      <div className='topcorner '>
+        <h2>Location</h2>
         <br />
-        <Autocomplete
+        <DateRange />
+
+        <br />
+        {/* <Autocomplete
           name='address'
           disablePortal
           id='text'
-          options={arrStreet}
+          options={arrStreet?arrStreet:null}
           sx={{ width: 470 }}
           renderInput={params => <TextField {...params} />}
           // defaultValue={
@@ -118,24 +108,16 @@ const submit=async()=>{
           //     : ''
           // }
           onChange={handleChangAddress}
-        />
+        /> */}
         <br />
         <div>
           <input
-            list='ice-cream-flavors'
             id='ice-cream-choice'
             onChange={e => sortSize(e.target.value)}
-            defaultValue={
-              data?.streets?.streets?.find(
-                x => x._id == data?.AdvertisingPoint?.street
-              )?.streetName
-            }
-            name='ice-cream-choice'
             placeholder='בחר רחוב'
           />
-          <datalist id='ice-cream-flavors'>
+          <datalist>
             {arrStreet?.map((item, key) => {
-              // data?.streets?.streets?.map((item, key) => {
               return <option key={key} value={item}></option>
             })}
           </datalist>
@@ -156,14 +138,13 @@ const submit=async()=>{
           <datalist id='ice'>
             {arrSize?.map((item, key) => {
               // data?.size?.size?.map((item, key) => {
-              return <option key={key} value={item}></option>
+              return <option key={key} value={item.sizeName}></option>
             })}
           </datalist>
         </div>
         <button
           //  disabled={!street || !date || !size}
           onClick={submit}
-          
         ></button>
       </div>
     </div>

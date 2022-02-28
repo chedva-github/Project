@@ -19,7 +19,7 @@ router.get('/getUser/:id', user.getUser)
 router.post('/getUserByNameAndPassword', user.getUserByNameAndPassword)
 router.put('/updateUser', user.updateUser)
 router.delete('/deleteUser/:id', user.deleteUser)
-router.delete('/deleteUser/:id', user.deleteUser)
+router.get('/getAllUsers', user.getAllUsers)
 
 router.post('/createremoveTime', removeTime.createremoveTime)
 router.get('getremoveTime/:id', removeTime.getremoveTime)

@@ -13,6 +13,8 @@ import Orders from '../components/admin/orders'
 import PersonlArea from '../components/privateArea/privateArea'
 import OrderPage from '../components/orderPage/orderPage'
 
+import OrderDetails from '../components/orderPage/orderPage'
+import Payment from '../components/payment/payment'
 import {useSelector} from 'react-redux'
 
 export default function Routers(){
@@ -29,6 +31,8 @@ export default function Routers(){
              <Route path="/Sign-up" element={<SignUp/>}/>
              <Route path="/Private-Area" element={<PersonlArea/>}/>
              <Route path="/About" element={<About/>}/>
+             <Route path="/OrderDetails" element={<OrderDetails/>}/>
+             <Route path="/Payment" element={<Payment/>}/>
              <Route path="/Campains" element={<Campains/>}/>
              <Route path="/Locations" element={<Locations/>}/>
              <Route path="/customers" element={<Customers/>}/>

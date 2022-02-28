@@ -14,8 +14,9 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
     return (
   <>
+  <div className="mt-5">
       <Map google={props.google} zoom={14}
-            style={{ width: '80%', height: '70%', position: 'relative' }}
+            style={{ width: '60%', height: '70%', position: 'relative' }}
             initialCenter={{
                 lat: 32.089870,
                 lng: 34.880451
@@ -28,6 +29,7 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
                 />
             ))}
          </Map>
+         </div>
    </>
     );
   }
