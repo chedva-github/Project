@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const router = require('./routes/api')
-
+const {setAPstatus} = require('./controllers/AdvertisingPoint')
 app.use(bodyParser.json())
 app.use(cors())
 app.use(router)
@@ -20,3 +20,5 @@ mongoose.connect('mongodb://localhost:27017', connectionParams)
   .catch(err => console.log(err))
 
 app.listen(4000, () => console.log("listening port 4000"))
+
+setAPstatus()

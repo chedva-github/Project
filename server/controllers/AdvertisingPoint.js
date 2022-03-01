@@ -1,6 +1,10 @@
+const schedule = require('node-schedule');
+
+
 const AdvertisingPoint = require('../models/advertisingPoint')
 const Street = require('../models/street')
 const Size = require('../models/size')
+const Order = require('../models/order')
 
 const createUAdvertisingPoint = async (req, res) => {
   console.log('create AdvertisingPoint', req.body)
@@ -115,11 +119,31 @@ const getAllAdvertisingPoint = (req, res) => {
     })
     .catch(err => res.send(err))
 }
+const setAPstatus= async (req, res) => {
 
+
+// const job = schedule.scheduleJob('22 9 * * *',async function (){
+  let date_today= new Date();
+
+  console.log('function work every 12 on night');
+  const order =  Order.find().populate('AdvertisingPointId').then(
+    orders=>orders.map(x=>{
+  if(x.startDate==date_today)
+  x.AdvertisingPointId.staus=true
+  if(x.endDate>date_today)
+    x.AdvertisingPointId.staus=false
+  })
+  )
+  await order.save()
+ 
+
+//});
+
+}
 module.exports = {
   createUAdvertisingPoint,
   getAdvertisingPoint,
   updateAdvertisingPoint,
   deleteAdvertisingPoint,
-  getAllAdvertisingPoint
+  getAllAdvertisingPoint,setAPstatus
 }

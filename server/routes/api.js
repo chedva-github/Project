@@ -39,6 +39,7 @@ router.put('/updateAdvertisingPoint', AdvertisingPoint.updateAdvertisingPoint)
 router.post('/deleteAdvertisingPoint/:id', AdvertisingPoint.deleteAdvertisingPoint)
 router.get('/getAllAdvertisingPoint', AdvertisingPoint.getAllAdvertisingPoint)
 
+
 router.get('/getAllStreets', streets.getAllStreets)
 router.get('/getAllSize', size.getAllSize)
 router.post('/insertSize',size.insertSize)
