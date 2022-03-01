@@ -124,17 +124,20 @@ const setAPstatus= async (req, res) => {
 
 // const job = schedule.scheduleJob('22 9 * * *',async function (){
   let date_today= new Date();
-
+  let month_today =date_today.getDate();
+  let day_today= date_today.getDate();
+  let yaer_today = date_today.getFullYear()
   console.log('function work every 12 on night');
-  const order =  Order.find().populate('AdvertisingPointId').then(
-    orders=>orders.map(x=>{
-  if(x.startDate==date_today)
+  const order = await Order.find().populate('AdvertisingPointId')
+    order.forEach(x => {
+  
+  if(x.startDate&&(x.startDate).getDate()==month_today&&(x.startDate).getMonth()==month_today&&(x.startDate).getFullYear()==year_today)
   x.AdvertisingPointId.staus=true
-  if(x.endDate>date_today)
-    x.AdvertisingPointId.staus=false
+  if(x.endDate&&(x.endDate).getDate()==month_today&&(x.endDate).getMonth()==month_today&&(x.endDate).getFullYear()==year_today)
+  x.AdvertisingPointId.status=false
   })
-  )
-  await order.save()
+  
+  // await order.save()
  
 
 //});

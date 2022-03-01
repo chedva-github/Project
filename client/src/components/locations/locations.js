@@ -79,10 +79,13 @@ export default function Location (props) {
         x.size._id == data.order.orderSize._id
     )
     console.log('currentAP', currentAP)
-    if(currentAP.status==1)
-    dispatch(action.setCurrentAdvertstingPoint(currentAP))
-    else alert('שלט זה תפוס כבר')
-    navigate('/orderPage')
+    // if(!currentAP.status){
+    dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
+        navigate('/orderPage')
+
+   // }
+    //else
+    //  alert('שלט זה תפוס כבר')
   }
   return (
     <div>

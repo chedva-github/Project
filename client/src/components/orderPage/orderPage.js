@@ -12,7 +12,8 @@ export default function OrderPage() {
   const navigate = useNavigate()
  useEffect(() => {
 setCreateOrderObj(
-  {userId:data.user.currentUser._id,
+  {
+    userId:data.user.currentUser._id,
     AdvertisingPointId: data.AdvertisingPoint.currentAdvertstingPoint._id,
     startDate: data.order.startDate,
     endDate: data.order.endDate
