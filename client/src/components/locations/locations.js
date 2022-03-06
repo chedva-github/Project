@@ -25,12 +25,13 @@ export default function Location (props) {
   }, [])
 
   useEffect(() => {
-    setArrSize(data?.size?.size)
-  }, [data?.size?.size])
+     let size = data.size.size.map(si => si.sizeName)
+
+    setArrSize(size)
+  }, [data.size?.size])
 
   useEffect(() => {
     let streets = data.streets.streets.map(street => street.streetName)
-
     setArrStreet(streets)
   }, [data.streets?.streets])
 
@@ -47,20 +48,11 @@ export default function Location (props) {
       }
     })
 
+console.log(streetFromAdvertisingPoing);
     setArrStreet(streetFromAdvertisingPoing)
   }
   function sortSize (street) {
-    //   debugger
-    // let arr = arrSize.filter(
-    //   x =>
-    //     data?.AdvertisingPoint?.advertisingPoint.find(
-    //       i =>
-    //         i.size == x._id &&
-    //         i.address == arrStreet.find(x => x.streetName == street)?._id
-    //     ) != undefined
-    // )
-    // setArrSize(arr)
-    // setStreet(street)
+
     var sizeFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.address?.streetName == street) {
@@ -72,20 +64,20 @@ export default function Location (props) {
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
   }
-  const submit = async () => {
+  async function submit(){
     const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
       x =>
         x.address._id == data.order.orderStreet._id &&
         x.size._id == data.order.orderSize._id
     )
     console.log('currentAP', currentAP)
-    // if(!currentAP.status){
+    if(currentAP[0]){
     dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
         navigate('/orderPage')
+    }
+    
 
-   // }
-    //else
-    //  alert('שלט זה תפוס כבר')
+   
   }
   return (
     <div>
@@ -120,9 +112,10 @@ export default function Location (props) {
             placeholder='בחר רחוב'
           />
           <datalist>
-            {arrStreet?.map((item, key) => {
-              return <option key={key} value={item}></option>
+{arrStreet?.map((item, key) => {
+                return <option key={key} value={item}></option>
             })}
+            
           </datalist>
         </div>
         <br />
@@ -140,8 +133,7 @@ export default function Location (props) {
           />
           <datalist id='ice'>
             {arrSize?.map((item, key) => {
-              // data?.size?.size?.map((item, key) => {
-              return <option key={key} value={item.sizeName}></option>
+              return <option key={key} value={item}></option>
             })}
           </datalist>
         </div>

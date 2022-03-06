@@ -50,9 +50,10 @@ const getUser = async (req, res) => {
 
 
 const updateUser = (req, res) => {
-    console.log("update user")
-    User.findByIdAndUpdate(req.body._id, req.body, { new: true })
+    console.log("update user",req.body)
+    User.findByIdAndUpdate(req.params._id, req.body, { new: true })
         .then(user => {
+            console.log(user);
             res.status(200).json({ user: user })
         }).catch(err =>
             res.status(500).send(err.message))

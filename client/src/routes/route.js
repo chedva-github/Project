@@ -15,6 +15,10 @@ import OrderPage from '../components/orderPage/orderPage'
 
 import OrderDetails from '../components/orderPage/orderPage'
 import Payment from '../components/payment/payment'
+import OrderSuccess from '../components/orderDetails/orderSuccess'
+import UserDetails from '../components/userDetails/userDetails'
+
+
 import {useSelector} from 'react-redux'
 
 export default function Routers(){
@@ -38,6 +42,10 @@ export default function Routers(){
              <Route path="/customers" element={<Customers/>}/>
              <Route path="/" element={<Home/>}/>
               <Route path="/orderPage" element={<OrderPage/>}/>
+                            <Route path="/OrderSuccess" element={<OrderSuccess/>}/>
+                            <Route path="/userDetails" element={<UserDetails/>}/>
+
+              
 
              </Routes>
              </Router>

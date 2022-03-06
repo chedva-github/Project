@@ -26,7 +26,7 @@ export default function AddBillboard (props) {
 
   useEffect(() => {
     setShow(true)
-   if(props.prop=='edit'){
+   if(props.prop==='edit'){
     // setBillboard(data.AdvertisingPoint.advertisingPoint[props.index])
     setBillboard({
       _id: data.AdvertisingPoint.advertisingPoint[props.index]._id,
@@ -55,7 +55,7 @@ export default function AddBillboard (props) {
 
   const handleSubmit = async event => {
     console.log(billboard)
-    props.prop == 'edit'
+    props.prop === 'edit'
       ? dispatch(actions.editBillboard(billboard))
       : dispatch(actions.addBillboard(billboard))
     closeModal()

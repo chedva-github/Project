@@ -126,7 +126,7 @@ const setAPstatus= async (req, res) => {
   let date_today= new Date();
   let month_today =date_today.getDate();
   let day_today= date_today.getDate();
-  let yaer_today = date_today.getFullYear()
+  let year_today = date_today.getFullYear()
   console.log('function work every 12 on night');
   const order = await Order.find().populate('AdvertisingPointId')
     order.forEach(x => {

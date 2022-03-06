@@ -17,7 +17,7 @@ router.delete('/deletearea/:id', area.deleteArea)
 router.post('/createUser', user.createUser)
 router.get('/getUser/:id', user.getUser)
 router.post('/getUserByNameAndPassword', user.getUserByNameAndPassword)
-router.put('/updateUser', user.updateUser)
+router.put('/updateUser/:_id', user.updateUser)
 router.delete('/deleteUser/:id', user.deleteUser)
 router.get('/getAllUsers', user.getAllUsers)
 
@@ -45,6 +45,9 @@ router.get('/getAllSize', size.getAllSize)
 router.post('/insertSize',size.insertSize)
 
 router.post('/createOrder',orderController.createOrder)
+router.get('/getAllOrders/:userId',orderController.getAllOrders)
+router.post('/deleteOrder/:orderId/:userId', orderController.deleteOrder)
+
 
 
 module.exports = router

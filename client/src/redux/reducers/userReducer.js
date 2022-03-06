@@ -30,7 +30,16 @@ const user = {
         state.userOrders.push(action.payload)
     },getAllUsers(state,action){
         state.users = action.payload
-    }
+//}
+     },logOut(state,action){state.currentUser = null},
+     updateUser(state,action){
+         alert(action.payload._id)
+         state.currentUser = action.payload
+     },
+     setLoader(state, action){
+         state.loader=false
+         state.currentUser = action.payload
+     }
     ,initialState
 }
 

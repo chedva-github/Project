@@ -29,7 +29,7 @@ export default function BillBoardTable (props) {
   // const filter = e => {
   //   console.log("showPost",billboarddata);
   //   setBillboarddata(billboarddata =>
-  //   billboarddata.filter(d => d[e.target.name].indexOf(e.target.value) !== -1)
+  //   billboarddata.filter(d => d[e.target.name].indexOf(e.target.value) !==== -1)
   //   )
   // if(e.target.name!==nameRef.current.name)
   // nameRef.current.value = "";
