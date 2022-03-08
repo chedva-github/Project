@@ -11,7 +11,7 @@ const initialState = {
 const AdvertisingPoint = {
   getAllAdvertisingPoint (state, action) {
     // debugger
-    console.log('advertisingPointReducer getAllAdvertisingPoint')
+    console.log('advertisingPointReducer getAllAdvertisingPoint',action.payload)
 
     state.advertisingPoint = action.payload
     // alert(JSON.stringify(state.currentUser))

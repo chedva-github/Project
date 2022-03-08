@@ -9,6 +9,7 @@ const initialState = {
     orderSize:null,
     orderPrice:null,
     available:null,
+    orderImg:null
 } 
 
 const order = {
@@ -38,6 +39,10 @@ state.available= action.payload
     
     setOrdersAfterCencel(state, action){
     state.orders=action.payload
+    },
+    setImg(state, action){alert(action.payload)
+
+        state.orderImg = action.payload
     }
   
     ,initialState

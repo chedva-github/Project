@@ -14,48 +14,49 @@ export default function NavFunc () {
   return (
     <>
       <Nav navbar fill variant='tabs' defaultActiveKey='/Home'>
-        {isLogin? <Profil />:null}
-        <Nav.Item>
+       
+        {/* <Nav.Item>
           <Nav.Link>
             {' '}
             <Link to='/'>Home</Link>
           </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
+        </Nav.Item> */}
+        {/* <Nav.Item>
           <Nav.Link>
             <Link to='/Sign-up'>Sign up</Link>
           </Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
+         
+        {/* <Nav.Item>
+          <Nav.Link>
+            <Link to='/Login'>כניסה</Link>
+          </Nav.Link>
+        </Nav.Item> */}
         <Nav.Item>
           <Nav.Link>
-            <Link to='/Login'>Login</Link>
+            <Link to='/About'>אודותינו</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>
-            <Link to='/About'>About</Link>
+            <Link to='/Campains'>קמפיינים</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>
-            <Link to='/Campains'>Campains</Link>
+            <Link to='/Locations'>הזמנת שלט</Link>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link>
-            <Link to='/Locations'>Locations</Link>
+            <Link to='/Customers'>מלקוחותינו</Link>
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
+        {/* <Nav.Item>
           <Nav.Link>
-            <Link to='/Customers'>Customers</Link>
+            <Link to='/Graphs'>הלוחות החמים👌</Link>
           </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <Link to='/Private-Area'>PersonlArea</Link>
-          </Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
         {data?.isAdmin ? (
           <Nav.Item>
             <Nav.Link>
@@ -63,6 +64,8 @@ export default function NavFunc () {
             </Nav.Link>
           </Nav.Item>
         ) : null}
+      {isLogin? <Profil />:null}
+
       </Nav>
     </>
   )

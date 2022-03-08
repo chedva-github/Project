@@ -17,26 +17,33 @@ export default function AddBillboard (props) {
     price: ''
   })
   const [show, setShow] = useState(true)
-  const [adressesList, setAdressesList] = useState([
-    'טרומפלדור',
-    'תקומה',
-    'רבי דוד',
-  'שבט אפרים'
-  ])
+  const [adressesList, setAdressesList] = useState([])
+  const [sizeList, setSizeList] = useState([])
 
   useEffect(() => {
     setShow(true)
-   if(props.prop==='edit'){
-    // setBillboard(data.AdvertisingPoint.advertisingPoint[props.index])
-    setBillboard({
-      _id: data.AdvertisingPoint.advertisingPoint[props.index]._id,
-      size:data.AdvertisingPoint.advertisingPoint[props.index].size?.sizeName,
-      address:data.AdvertisingPoint.advertisingPoint[props.index].address?.streetName,
-      status:data.AdvertisingPoint.advertisingPoint[props.index].status,
-      price:data.AdvertisingPoint.advertisingPoint[props.index].price
+    if (props.prop === 'edit') {
+      // setBillboard(data.AdvertisingPoint.advertisingPoint[props.index])
+      setBillboard({
+        _id: data.AdvertisingPoint.advertisingPoint[props.index]._id,
+        size:
+          data.AdvertisingPoint.advertisingPoint[props.index].size?.sizeName,
+        address:
+          data.AdvertisingPoint.advertisingPoint[props.index].address
+            ?.streetName,
+        status: data.AdvertisingPoint.advertisingPoint[props.index].status,
+        price: data.AdvertisingPoint.advertisingPoint[props.index].price
+      })
+    }
+    let streets1 = data.streets?.streets?.map(street => street.streetName)
+    let street2 = streets1.filter(x=>x!==undefined)
+    console.log("street2", street2);
+    setAdressesList(street2)
+    let size1 = data.size?.size?.map(street => street.sizeName)
+    let size2 = size1.filter(x=>x!==undefined)
 
-    })
-   }
+    setSizeList(size2
+      )
   }, [])
   const closeModal = () => {
     setShow(false)
@@ -46,11 +53,13 @@ export default function AddBillboard (props) {
     const value = target.value
     const name = target.name
     setBillboard({ ...billboard, [name]: value })
-       //setState({...state,sld_url: event.target.value})
-
+    //setState({...state,sld_url: event.target.value})
   }
   const handleChangAddress = (event, value) => {
     setBillboard({ ...billboard, address: value })
+  }
+  const handleChangSize = (event, value) => {
+    setBillboard({ ...billboard, size: value })
   }
 
   const handleSubmit = async event => {
@@ -86,9 +95,27 @@ export default function AddBillboard (props) {
                 }
                 onChange={handleChangAddress}
               />
+             
               <br />
               <Form.Label>size</Form.Label>
-              <Form.Control
+              <Autocomplete
+                name='size'
+                disablePortal
+                id='text'
+                options={sizeList}
+                sx={{ width: 470 }}
+                renderInput={params => <TextField {...params} />}
+                defaultValue={
+                  props.index
+                    ? data.AdvertisingPoint.advertisingPoint[props.index]
+                        .size?.sizeName
+                    : ''
+                }
+                onChange={handleChangSize}
+              />
+             
+              <br />
+              {/* <Form.Control
                 name='size'
                 type='string'
                 defaultValue={
@@ -98,7 +125,7 @@ export default function AddBillboard (props) {
                     : ''
                 }
                 onChange={handleInputChange}
-              ></Form.Control>
+              ></Form.Control> */}
 
               <Form.Label>price</Form.Label>
 

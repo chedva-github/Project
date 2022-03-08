@@ -119,8 +119,8 @@ async function sendEmail(order) {
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'chedva357@gmail.com',
-    pass: 'tpr, buhchry'
+    user: 'billboardcity123@gmail.com',
+    pass: '0548501781'
   }
 });
 

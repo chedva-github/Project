@@ -5,7 +5,8 @@ const orderSchema = mongoose.Schema({
     AdvertisingPointId: {type:mongoose.SchemaTypes.ObjectId, ref:'AdvertisingPoint'},
     startDate: { type: Date },
     endDate: { type: Date },
-    img:String
+    img:String,
+    accept: Boolean
 })
 
 module.exports = mongoose.model('Order', orderSchema)

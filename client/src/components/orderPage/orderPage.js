@@ -15,16 +15,21 @@ export default function OrderPage () {
       userId: data.user.currentUser._id,
       AdvertisingPointId: data.AdvertisingPoint.currentAdvertstingPoint._id,
       startDate: data.order.startDate,
-      endDate: data.order.endDate
+      endDate: data.order.endDate,
+      img:data.order.orderImg
     })
   }, [])
   useEffect(() => {
+
     if (data.order.available == 200) return navigate('/OrderSuccess')
-    if (data.order.available == 401) {alert('שלט זה תפוס בתאריכם שביקשת');
-  return  navigate('/Locations')}
-    if (data.order.available == 403){
+    if (data.order.available == 401) {
+      alert('שלט זה תפוס בתאריכם שביקשת')
+      return navigate('/Locations')
+    }
+    if (data.order.available == 403) {
       alert(' וודא שהינך מחובר לאתר קרתה בעיה, אנא נסה שנית')
- return   navigate('/Locations')}
+      return navigate('/Locations')
+    }
   }, [data.order.available])
 
   const message = ` ליום ${data.order.orderPrice} המחיר הינו . ${
@@ -33,13 +38,14 @@ export default function OrderPage () {
     data.order.orderStreet?.streetName
   } שלום, ביקשת להזמין את השלט ברחוב`
 
-   confirmAlert({
+  confirmAlert({
     title: 'אישור הזמנה',
     message: message,
     buttons: [
       {
         label: 'מאשר',
-        onClick: () => dispatch(action.addOrder(createOrderObj))
+        // onClick: () => dispatch(action.addOrder(createOrderObj))
+        onClick: () => navigate('/Payment')
       },
       {
         label: 'לא מאשר',

@@ -45,7 +45,7 @@ export default function PrivateArea(){
               {/* : null} */}
         {show ? <AddBillBoard prop='new'/> : null}
 
-<table>
+{/* <table>
         {data?.user?.userOrders?.map((item,index)=>(
             <tr key={index} style={{border:'solid black 1px',width:'40%'}}>
                 <td>{data?.streets?.streets?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).address)?.streetName }</td>
@@ -56,7 +56,7 @@ export default function PrivateArea(){
             </tr>
 
         ))}
-        </table>
+        </table> */}
         </>
     )
 }

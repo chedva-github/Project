@@ -7,7 +7,7 @@ const AdvertisingPoint = require('../controllers/AdvertisingPoint')
 const streets = require('../controllers/street')
 const size = require('../controllers/size')
 const orderController = require('../controllers/orderController')
-
+const uploadImg = require('../controllers/uploadImgController')
 
 router.post('/createarea', area.createArea)
 router.get('getarea/:id', area.getArea)
@@ -48,6 +48,7 @@ router.post('/createOrder',orderController.createOrder)
 router.get('/getAllOrders/:userId',orderController.getAllOrders)
 router.post('/deleteOrder/:orderId/:userId', orderController.deleteOrder)
 
+router.post('/uploadImg', uploadImg.uploadImg)
 
 
 module.exports = router

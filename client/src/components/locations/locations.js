@@ -3,36 +3,43 @@ import Autocomplete from '@mui/material/Autocomplete'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
 import MyMapComponent from './googleMap'
 import './locations.css'
 import action from '../../redux/action'
-
+import UploadImg from './uploadImg'
 import DateRange from './datePicker'
 export default function Location (props) {
   const dispatch = useDispatch()
   const data = useSelector(state => state)
-  const [arrSize, setArrSize] = useState()
-  const [size, setSize] = useState()
+  const [arrSize, setArrSize] = useState([])
   const [arrStreet, setArrStreet] = useState([])
-  const [street, setStreet] = useState()
   const [date, setDate] = useState()
   const navigate = useNavigate()
 
-  useEffect(async () => {
-    await dispatch(action.getAllStreets())
-    await dispatch(action.getAllSize())
+  useEffect( () => {
+     dispatch(action.getAllStreets())
+     dispatch(action.getAllSize())
   }, [])
 
   useEffect(() => {
-     let size = data.size.size.map(si => si.sizeName)
+    if (data.size.size) {
 
-    setArrSize(size)
+    let size1 = data.size.size.map(si => si.sizeName)
+    console.log(size1);
+    setArrSize(size1)
+    }
   }, [data.size?.size])
 
   useEffect(() => {
-    let streets = data.streets.streets.map(street => street.streetName)
-    setArrStreet(streets)
+    if (data.streets.streets) {
+      let streets1 = data.streets.streets.map(street => street.streetName)
+      setArrStreet(streets1)
+      console.log('sreets1', streets1)
+
+    }
+
   }, [data.streets?.streets])
 
   const handleChangAddress = () => {
@@ -48,11 +55,10 @@ export default function Location (props) {
       }
     })
 
-console.log(streetFromAdvertisingPoing);
+    console.log(streetFromAdvertisingPoing)
     setArrStreet(streetFromAdvertisingPoing)
   }
   function sortSize (street) {
-
     var sizeFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.address?.streetName == street) {
@@ -64,20 +70,20 @@ console.log(streetFromAdvertisingPoing);
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
   }
-  async function submit(){
+  async function submit () {
     const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
       x =>
         x.address._id == data.order.orderStreet._id &&
         x.size._id == data.order.orderSize._id
     )
     console.log('currentAP', currentAP)
-    if(currentAP[0]){
-    dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
-        navigate('/orderPage')
+    if (currentAP[0]) {
+      dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
+      navigate('/orderPage')
     }
-    
-
-   
+  }
+  const uploadImg = async files => {
+    alert(files.target.value)
   }
   return (
     <div>
@@ -89,54 +95,47 @@ console.log(streetFromAdvertisingPoing);
         <DateRange />
 
         <br />
-        {/* <Autocomplete
-          name='address'
-          disablePortal
-          id='text'
-          options={arrStreet?arrStreet:null}
-          sx={{ width: 470 }}
-          renderInput={params => <TextField {...params} />}
-          // defaultValue={
-          //   props.index
-          //     ? data.AdvertisingPoint.advertisingPoint[props.index]
-          //         .address?.streetName
-          //     : ''
-          // }
-          onChange={handleChangAddress}
-        /> */}
         <br />
-        <div>
-          <input
-            id='ice-cream-choice'
-            onChange={e => sortSize(e.target.value)}
-            placeholder='בחר רחוב'
-          />
-          <datalist>
-{arrStreet?.map((item, key) => {
-                return <option key={key} value={item}></option>
-            })}
-            
-          </datalist>
-        </div>
-        <br />
+    
         <div>
           <input
             list='ice'
             id='ice-cream'
+            onChange={e => sortSize(e.target.value)}
+            defaultValue={
+              data?.street?.street?.find(x => x._id == data?.AdvertisingPoint?.street)
+                ?.streetName
+            }
+            name='ice-cream'
+            placeholder='בחר רחוב'
+          />
+          <datalist id='ice'>
+            {arrStreet?.map((item, key) => {
+              return <option key={key} value={item}></option>
+            })}
+          </datalist>
+        </div>
+
+        <br />
+        <div>
+          <input
+           list='ice2'
             onChange={e => sortStreet(e.target.value)}
             defaultValue={
               data?.size?.size?.find(x => x._id == data?.AdvertisingPoint?.size)
                 ?.sizeName
             }
-            name='ice-cream'
+            name='size'
             placeholder='בחר גודל'
           />
-          <datalist id='ice'>
+          <datalist id='ice2'>
             {arrSize?.map((item, key) => {
               return <option key={key} value={item}></option>
             })}
           </datalist>
         </div>
+
+        <UploadImg />
         <button
           //  disabled={!street || !date || !size}
           onClick={submit}

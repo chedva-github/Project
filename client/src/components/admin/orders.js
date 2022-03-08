@@ -43,6 +43,7 @@ export default function Orders () {
               <th>תאריך התחלה </th>
               <th>סוג </th>
               <th>רחוב</th>
+              <th>תמונה</th>
             </tr>
           </thead>
           <tbody>
@@ -66,6 +67,8 @@ export default function Orders () {
                       <td>{order.AdvertisingPointId&&order.AdvertisingPointId.size.sizeName}</td>
                       <td>{order.startDate.split('T')[0]}</td>
                       <td>{order.endDate.split('T')[0]}</td>
+                      <td><img src={order.img}/></td>
+
                     </tr>
                   </>
                 )

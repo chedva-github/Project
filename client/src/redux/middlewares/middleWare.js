@@ -56,6 +56,7 @@ export const middle = ({ dispatch, getState }) => next => async (action) => {
       console.log("i am  here")
       const res = await axios.get('http://localhost:4000/getAllStreets')
       console.log("res", res.data)
+      alert(res.data)
       action.payload = res.data
       return next(action);
     }

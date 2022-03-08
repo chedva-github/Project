@@ -2,7 +2,7 @@ import produce from 'immer'
 import execHandler from './reducerUtils'
 
 const initialState = {
-    streets:['טרומפלדור','תקומה','רבי דוד']
+    streets:null
 }
 
 const streets = {

@@ -7,7 +7,6 @@ import MenuItem from '@mui/material/MenuItem'
 import actions from '../../redux/action'
 import './profil.css'
 
-
 export default function Profil () {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -16,8 +15,6 @@ export default function Profil () {
   const data = useSelector(state => state)
   const dispatch = useDispatch()
 
-  // const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(!open);
   const handleClick = event => {
     setAnchorEl(event.currentTarget)
   }
@@ -31,10 +28,16 @@ export default function Profil () {
 
     // dispatch(actions.logOut())
   }
-  const handleEdit= () =>{
+  const handleEdit = () => {
     navigate('./userDetails')
-
   }
+  const handleToOrders = () => {
+    navigate('./orders')
+  }
+  const handleToAdmin = () => {
+    navigate('./Private-Area')
+  }
+
   return (
     <>
       <div class='profil'>
@@ -58,6 +61,12 @@ export default function Profil () {
         >
           <MenuItem onClick={handleEdit}>עריכת פרטים</MenuItem>
           <br />
+          <MenuItem onClick={handleToOrders}>הזמנות שלי</MenuItem>
+          <br />          
+              <MenuItem onClick={handleToAdmin}>שלטים למנהל</MenuItem>
+            
+          
+      
           <MenuItem onClick={handleLogOut}>יציאה</MenuItem>
         </Menu>
       </div>
