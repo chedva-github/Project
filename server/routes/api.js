@@ -45,8 +45,9 @@ router.get('/getAllSize', size.getAllSize)
 router.post('/insertSize',size.insertSize)
 
 router.post('/createOrder',orderController.createOrder)
-router.get('/getAllOrders/:userId',orderController.getAllOrders)
+router.get('/getOrdersforUser/:userId',orderController.getOrdersforUser)
 router.post('/deleteOrder/:orderId/:userId', orderController.deleteOrder)
+router.get('/getOrdersAwaitToAccept', orderController.getOrdersAwaitToAccept)
 
 router.post('/uploadImg', uploadImg.uploadImg)
 

@@ -6,7 +6,7 @@ const orderSchema = mongoose.Schema({
     startDate: { type: Date },
     endDate: { type: Date },
     img:String,
-    accept: Boolean
+    accept: {type:Number,default:-1}
 })
 
 module.exports = mongoose.model('Order', orderSchema)

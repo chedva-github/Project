@@ -37,7 +37,10 @@ export default function Profil () {
   const handleToAdmin = () => {
     navigate('./Private-Area')
   }
-
+  const handleAcceptAPToAdmin = () => {
+    navigate('./AcceptAdmin') 
+  }
+  
   return (
     <>
       <div class='profil'>
@@ -62,11 +65,12 @@ export default function Profil () {
           <MenuItem onClick={handleEdit}>עריכת פרטים</MenuItem>
           <br />
           <MenuItem onClick={handleToOrders}>הזמנות שלי</MenuItem>
-          <br />          
-              <MenuItem onClick={handleToAdmin}>שלטים למנהל</MenuItem>
-            
-          
-      
+          <br />
+          {data.user.isAdmin&&(<>
+          <MenuItem onClick={handleToAdmin}>הוספה ועריכת שלטים</MenuItem>
+          <br />
+          <MenuItem onClick={handleAcceptAPToAdmin}>אישור שלטים </MenuItem>
+          <br /></>)}
           <MenuItem onClick={handleLogOut}>יציאה</MenuItem>
         </Menu>
       </div>

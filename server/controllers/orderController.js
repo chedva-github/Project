@@ -3,7 +3,39 @@ const Order = require('../models/order')
 const User = require('../models/user')
 
 var nodemailer = require('nodemailer');
+const getOrdersAwaitToAccept = async (req, res) => {
+  console.log('getOrdersAwaitToAccept😋🤩🙂😚getOrdersAwaitToAccept')
+  // Order.find({userId: req.params.userId})
+  //   .populate('userId')
+  //   .populate('AdvertisingPointId','address')
+  //   .then(ad => {jh
+  //     console.log(ad);
+  //     res.send(ad)
+  //   })
+  //   .catch(err =>
+  //   res.send(err))
 
+  Order.find({accept:-1})
+    .populate({
+      path: 'AdvertisingPointId',
+      model: 'AdvertisingPoint',
+      populate: {path:'address',path:'size'}
+       // model: 'Street', 
+      // },
+      //  populate: 'size'
+             //   path: 'size',
+      // //  model: 'Size', 
+      // }
+    })
+    .populate('userId')
+    .exec(function (err, user) {
+      if (err) {
+        console.log('eerrorr', err)
+        return res.status(403).send(err)
+      }
+            return res.status(200).send(user)
+    })
+}
 const createOrder = async (req, res) => {
   console.log('create order', req.body)
   const avilable = await check_AP_avilable(req.body)
@@ -51,18 +83,9 @@ async function check_AP_avilable (order) {
   })
   return available
 }
-const getAllOrders = async (req, res) => {
-  console.log('😋🤩🙂😚')
-  // Order.find({userId: req.params.userId})
-  //   .populate('userId')
-  //   .populate('AdvertisingPointId','address')
-  //   .then(ad => {
-  //     console.log(ad);
-  //     res.send(ad)
-  //   })
-  //   .catch(err =>
-  //   res.send(err))
-
+const getOrdersforUser = async (req, res) => {
+  console.log('AcceptAdmin 😋🤩🙂😚')
+ 
   Order.find({ userId: req.params.userId })
     .populate({
       path: 'AdvertisingPointId',
@@ -125,7 +148,7 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailOptions = {
-  from: 'no-repla@advertstigpoint.com',
+  from: 'no-repla@billboard.com',
   to: user.email,
   subject: 'Sending Email using Node.js',
   text: 'That was easy!'
@@ -139,4 +162,4 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 });
 }
-module.exports = { createOrder, getAllOrders,deleteOrder }
+module.exports = { createOrder, getOrdersforUser,deleteOrder ,getOrdersAwaitToAccept}

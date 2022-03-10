@@ -19,8 +19,9 @@ const createUAdvertisingPoint = async (req, res) => {
     address: address.id,
     size: size._id,
     price: req.body.price,
-    status: req.body.status
+    status: false
   })
+  
   try {
      await AdvertisingPointObj.save()
     const newAdvertisingPointafterPopulate =await AdvertisingPoint.findOne({"_id":AdvertisingPointObj._id}).populate('address')

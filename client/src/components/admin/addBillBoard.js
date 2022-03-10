@@ -13,7 +13,7 @@ export default function AddBillboard (props) {
     _id: '',
     address: '',
     size: '',
-    status: '',
+    // status: '',
     price: ''
   })
   const [show, setShow] = useState(true)
@@ -140,7 +140,7 @@ export default function AddBillboard (props) {
                 // defaultValue={billboard.descraption}
                 onChange={handleInputChange}
               />
-              <Form.Label>status</Form.Label>
+              {/* <Form.Label>status</Form.Label>
               <Form.Control
                 name='status'
                 type='text'
@@ -150,7 +150,7 @@ export default function AddBillboard (props) {
                     : ''
                 }
                 onChange={handleInputChange}
-              />
+              /> */}
             </Form.Group>
           </Form>
         </Modal.Body>

@@ -18,6 +18,8 @@ import Payment from '../components/payment/payment'
 import OrderSuccess from '../components/orderDetails/orderSuccess'
 import UserDetails from '../components/userDetails/userDetails'
 import Graphs from '../components/graphs/graphs'
+import AcceptAdmin from '../components/admin/accept'
+
 
 import { useSelector } from 'react-redux'
 
@@ -43,7 +45,7 @@ export default function Routers () {
           <Route path='/orderPage' element={<OrderPage />} />
           <Route path='/OrderSuccess' element={<OrderSuccess />} />
           <Route path='/userDetails' element={<UserDetails />} />
-          {/* <Route path='/graphs' element={<Graphs />} /> */}
+          <Route path='/AcceptAdmin' element={<AcceptAdmin />} />
         </Routes>
       </Router>
     </>
