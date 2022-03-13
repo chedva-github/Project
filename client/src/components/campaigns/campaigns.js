@@ -3,8 +3,6 @@ import './campains.css'
 export default function Campains() {
     return (
         <>
-            <div>Campains</div>
-
             {/* <div class="container">
                 <div class="top">
                     <ul>
@@ -47,37 +45,47 @@ export default function Campains() {
                     </a></div>
                 </div>
             </div> */}
-
-            <table align="center" cellSpacing="50px" >
-                <tr>
-                    <td align="center">
-                        <img src="http://www.ctv.co.il/wp-content/uploads/2017/04/EL_AL.png" width="160px"></img>
-                    </td>
-                    <td align="center">
-                        <img src="http://www.ctv.co.il/wp-content/uploads/2017/04/1%D7%9B%D7%9C%D7%9E%D7%95%D7%91%D7%99%D7%9C-1-1.jpg" width="160px"></img>
-                    </td>
-                    <td align="center">
-                        <img src="http://www.ctv.co.il/wp-content/uploads/2017/04/ESK_7343_small.jpg" width="160px"></img>
-                    </td>
-                    <td align="center">
-                        <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/69685107_2426373434066095_5430818092311642112_n-1-okatp9torsefvkjfy5zlssk5yyvjnxenyqbuss86ps.jpg" width="160px"></img>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/68734349_2420124674690971_6262249612501843968_n-1-okat8o0c15o2rknswzkvqzf05wq3ofhdojf1ksukn4.jpg" width="160px"></img>
-                    </td>
-                    <td align="center">
-                        <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/68950134_2420018384701600_6008831423752962048_n-okasjhvx0v7nvh7zw3wizc2nigs9k7k4vyiyy2639c.jpg" width="160px"></img>
-                    </td>
-                    <td align="center">
-                        <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/79690430_2663823246987778_2808526565653086208_n-okatlxicgztqlhe7gpzcxmx5xnckao50u6tpdd6ku8.jpg" width="160px"></img>
-                    </td>
-                    <td align="center">
-                        <img src="http://megamedia.co.il/wp-content/uploads/2017/08/%D7%A9%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%A6%D7%95%D7%AA-%D7%A0%D7%AA%D7%A0%D7%99%D7%94-%D7%A4%D7%95%D7%9C%D7%92-600x600.jpg" width="160px"></img>
-                    </td>
-                </tr>
-            </table>
+            <div className="comp-table">
+                <h1>:קמפיינים שלנו</h1>
+                <table align="center" >
+                    <tr>
+                        <td align="center">
+                            <img src="http://www.ctv.co.il/wp-content/uploads/2017/04/EL_AL.png" ></img>
+                            <p>אל-על</p>
+                        </td>
+                        <td align="center">
+                            <img src="http://www.ctv.co.il/wp-content/uploads/2017/04/1%D7%9B%D7%9C%D7%9E%D7%95%D7%91%D7%99%D7%9C-1-1.jpg" ></img>
+                            <p>Mitsubishi</p>
+                        </td>
+                        <td align="center">
+                            <img src="http://www.ctv.co.il/wp-content/uploads/2017/04/ESK_7343_small.jpg" ></img>
+                            <p>מפעל הפיס</p>
+                        </td>
+                        <td align="center">
+                            <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/69685107_2426373434066095_5430818092311642112_n-1-okatp9torsefvkjfy5zlssk5yyvjnxenyqbuss86ps.jpg" ></img>
+                            <p>תן ביס</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/68734349_2420124674690971_6262249612501843968_n-1-okat8o0c15o2rknswzkvqzf05wq3ofhdojf1ksukn4.jpg" ></img>
+                            <p>BBB אשדוד</p>
+                        </td>
+                        <td align="center">
+                            <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/68950134_2420018384701600_6008831423752962048_n-okasjhvx0v7nvh7zw3wizc2nigs9k7k4vyiyy2639c.jpg" ></img>
+                            <p>מחסני תאורה</p>
+                        </td>
+                        <td align="center">
+                            <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/79690430_2663823246987778_2808526565653086208_n-okatlxicgztqlhe7gpzcxmx5xnckao50u6tpdd6ku8.jpg" ></img>
+                            <p>קניון סימול</p>
+                        </td>
+                        <td align="center">
+                            <img src="http://megamedia.co.il/wp-content/uploads/2017/08/%D7%A9%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%A6%D7%95%D7%AA-%D7%A0%D7%AA%D7%A0%D7%99%D7%94-%D7%A4%D7%95%D7%9C%D7%92-600x600.jpg" ></img>
+                            <p>Astral</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </>
     )
 }

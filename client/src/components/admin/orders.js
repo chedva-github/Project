@@ -7,7 +7,7 @@ import { Modal, Table, Form, Container, Button } from 'react-bootstrap'
 
 import actions from '../../redux/action'
 
-export default function Orders () {
+export default function Orders() {
   // const navigate = useNavigate()
   const data = useSelector(state => state)
   const dispatch = useDispatch()
@@ -21,61 +21,61 @@ export default function Orders () {
   }, [data.order.orders])
   const handleCancle = index => {
     const now = new Date()
-    if(ordersdata[index].startDate>now)
-    alert("לא ניתן לבטל הזמנה פעילה")
+    if (ordersdata[index].startDate > now)
+      alert("לא ניתן לבטל הזמנה פעילה")
     else
-    dispatch(actions.cencelOrder(ordersdata[index]._id))
+      dispatch(actions.cencelOrder(ordersdata[index]._id))
     // setEditshow(index)
   }
   return (
-    <div>
+    <div className='admin-order'>
       <h1>ההזמנות שלי</h1>
 
-      <Container>
-        <Table striped bordered hover className='mt-5'>
-          <thead>
-            <tr>
-              <th>ביטול הזמנה</th>
+      {/* <Container> */}
+      <Table striped bordered hover className='mt-5'>
+        <thead>
+          <tr>
+            <th>ביטול הזמנה</th>
 
-              <th>מחיר</th>
-              <th>סטטוס</th>
-              <th>תאריך סיום</th>
-              <th>תאריך התחלה </th>
-              <th>סוג </th>
-              <th>רחוב</th>
-              <th>תמונה</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ordersdata && ordersdata.length>0&&
-              ordersdata.map((order, index) => {
-                return (
-                  <>
-                    <tr key={index}>
-                      <td>
-                        <div>
-                          <AiFillDelete
-                            onClick={e => {
-                              handleCancle(index)
-                            }}
-                          />
-                        </div>
-                      </td>
+            <th>מחיר</th>
+            <th>סטטוס</th>
+            <th>תאריך סיום</th>
+            <th>תאריך התחלה </th>
+            <th>סוג </th>
+            <th>רחוב</th>
+            <th>תמונה</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ordersdata && ordersdata.length > 0 &&
+            ordersdata.map((order, index) => {
+              return (
+                <>
+                  <tr key={index}>
+                    <td>
+                      <div>
+                        <AiFillDelete
+                          onClick={e => {
+                            handleCancle(index)
+                          }}
+                        />
+                      </div>
+                    </td>
 
-                      <td>{order.AdvertisingPointId&&order.AdvertisingPointId.address.streetName}</td>
-                      <td>{order.AdvertisingPointId?.status?.toString()}</td>
-                      <td>{order.AdvertisingPointId&&order.AdvertisingPointId.size.sizeName}</td>
-                      <td>{order.startDate.split('T')[0]}</td>
-                      <td>{order.endDate.split('T')[0]}</td>
-                      <td><img src={order.img}/></td>
+                    <td>{order.AdvertisingPointId && order.AdvertisingPointId.address.streetName}</td>
+                    <td>{order.AdvertisingPointId?.status?.toString()}</td>
+                    <td>{order.AdvertisingPointId && order.AdvertisingPointId.size.sizeName}</td>
+                    <td>{order.startDate.split('T')[0]}</td>
+                    <td>{order.endDate.split('T')[0]}</td>
+                    <td><img src={order.img} /></td>
 
-                    </tr>
-                  </>
-                )
-              })}
-          </tbody>
-        </Table>
-      </Container>
+                  </tr>
+                </>
+              )
+            })}
+        </tbody>
+      </Table>
+      {/* </Container> */}
 
       {/* <table style={{ direction: 'rtl' }}>
         <tr>

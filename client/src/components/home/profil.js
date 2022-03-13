@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem'
 import actions from '../../redux/action'
 import './profil.css'
 
-export default function Profil () {
+export default function Profil() {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -38,9 +38,9 @@ export default function Profil () {
     navigate('./Private-Area')
   }
   const handleAcceptAPToAdmin = () => {
-    navigate('./AcceptAdmin') 
+    navigate('./AcceptAdmin')
   }
-  
+
   return (
     <>
       <div class='profil'>
@@ -51,7 +51,7 @@ export default function Profil () {
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
         >
-          {data.user.currentUser?.name[0]}
+          שלום {data.user.currentUser?.name[0]}
         </Button>
         <Menu
           id='basic-menu'
@@ -66,11 +66,11 @@ export default function Profil () {
           <br />
           <MenuItem onClick={handleToOrders}>הזמנות שלי</MenuItem>
           <br />
-          {data.user.isAdmin&&(<>
-          <MenuItem onClick={handleToAdmin}>הוספה ועריכת שלטים</MenuItem>
-          <br />
-          <MenuItem onClick={handleAcceptAPToAdmin}>אישור שלטים </MenuItem>
-          <br /></>)}
+          {data.user.isAdmin && (<>
+            <MenuItem onClick={handleToAdmin}>הוספה ועריכת שלטים</MenuItem>
+            <br />
+            <MenuItem onClick={handleAcceptAPToAdmin}>אישור שלטים </MenuItem>
+            <br /></>)}
           <MenuItem onClick={handleLogOut}>יציאה</MenuItem>
         </Menu>
       </div>

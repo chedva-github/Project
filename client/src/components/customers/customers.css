@@ -1,10 +1,30 @@
 
-table{
+/* .costom-table table{
     border-collapse: separate;
     border-spacing: 20px;
 }
-  td {
+.costom-table  td {
     padding: 0 75px;
   }
-  table tr.separator { height: 20px; }
+.costom-table  table tr.separator { height: 20px; } */
 
+h1{
+	font-size: 35px;
+    font-weight: 700;
+    background-color: #007bff;
+	color: white;
+    margin: 10px;
+	padding: 10px;
+    text-align: end;
+}
+.costom-table table{
+	width: 90%;
+}
+.costom-table  td {
+  padding: 10px;
+}
+img{
+  margin: 20px;
+  width: 195px;
+  height: 160px;
+}
