@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom'
 import { Divider } from '@mui/material';
+
 // const style = {
 //     position: 'absolute',
 //     top: '50%',
