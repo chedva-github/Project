@@ -1,7 +1,10 @@
 .profil{
-    background-color: black;
-color: white;
-width: 50px;
-border-radius:50%
+    /* color: #0067ff; */
 
+    width: 110px;
+}
+.profil .MuiButton-root{
+    width: 100px;
+    height: 44px;
+    font-size: 19px;
 }

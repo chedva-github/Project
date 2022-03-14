@@ -1,29 +1,71 @@
 
 
-body{
-   /* background-image: url("../../asserts/img/1.png"); */
-    background-repeat: no-repeat;
-    background-position: 50% 0%;
-    background-size: cover;     
-    
-    
-}  
-.container {
+
+ 
+.container-home{
+  width: 100vw;
+  background-image: url("http://megamedia.co.il/wp-content/uploads/2018/01/Untitled_Panorama2.jpg");
+}
+.container-home {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 100vh;
 }
-button{
+/* button{
     /* background-color: rgb(235, 225, 225); */
-        border: .5px solid crimson;
+        /* border: .5px solid crimson;
         border-radius: 10px;
         color: rgb(12, 9, 9);
         padding: 8px;  
         text-align: center;  
+} */ 
+/* .box{
+  position: 'absolute';
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
+  width: 400;
+  background-color: 'background.paper';
+  border: '2px solid #000';
+  boxShadow: 24;
+} */
+/* .img-back{
+  width: 100vw;
+  height: 100vh;
+} */
+h2{
+  margin: 0px;
+  color: #007bff;
+  font-size: 34px;
+  padding: 0px;
+  font-weight: 600;
 }
+.detailes{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  background-color: white;
+  opacity: 0.8;
+  width: 100vw;
+}
+/* .enter-btn{
+  background-color: #007bff;
 
+} */
+.MuiButton-label{
+  background-color: #007bff;
+  color: white;
+  font-size: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
 
 /* .home {
   position:absolute;
