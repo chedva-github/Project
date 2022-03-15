@@ -48,6 +48,7 @@ router.post('/createOrder',orderController.createOrder)
 router.get('/getOrdersforUser/:userId',orderController.getOrdersforUser)
 router.post('/deleteOrder/:orderId/:userId', orderController.deleteOrder)
 router.get('/getOrdersAwaitToAccept', orderController.getOrdersAwaitToAccept)
+router.post('/changeAccept', orderController.changeAccept)
 
 router.post('/uploadImg', uploadImg.uploadImg)
 

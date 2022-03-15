@@ -45,7 +45,10 @@ const order = {
   getOrdersAwaitToAccept (state, action) {
     state.awaitToAccept = action.payload
   },
-
+setOrdersAfterCencel (state, action) {
+  state.awaitToAccept = state.awaitToAccept.filter(a=>a._id!=action.payload)
+  console.log("afterrFilter",state.awaitToAccept);
+},
   initialState
 }
 

@@ -2,29 +2,20 @@ const mongoose = require('mongoose')
 const Order = require('../models/order')
 const User = require('../models/user')
 
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer')
+
 const getOrdersAwaitToAccept = async (req, res) => {
   console.log('getOrdersAwaitToAccept😋🤩🙂😚getOrdersAwaitToAccept')
-  // Order.find({userId: req.params.userId})
-  //   .populate('userId')
-  //   .populate('AdvertisingPointId','address')
-  //   .then(ad => {jh
-  //     console.log(ad);
-  //     res.send(ad)
-  //   })
-  //   .catch(err =>
-  //   res.send(err))
-
-  Order.find({accept:-1})
+  Order.find({ accept: -1 })
     .populate({
       path: 'AdvertisingPointId',
       model: 'AdvertisingPoint',
-      populate: {path:'address',path:'size'}
-       // model: 'Street', 
+      populate: { path: 'address', path: 'size' }
+      // model: 'Street',
       // },
       //  populate: 'size'
-             //   path: 'size',
-      // //  model: 'Size', 
+      //   path: 'size',
+      // //  model: 'Size',
       // }
     })
     .populate('userId')
@@ -33,7 +24,7 @@ const getOrdersAwaitToAccept = async (req, res) => {
         console.log('eerrorr', err)
         return res.status(403).send(err)
       }
-            return res.status(200).send(user)
+      return res.status(200).send(user)
     })
 }
 const createOrder = async (req, res) => {
@@ -52,9 +43,8 @@ const createOrder = async (req, res) => {
     return res.status(403).json({ message: 'חסר מידע', status: 403 })
 
   const newOrder = await order.save()
-  if (newOrder)
-  {
-     sendEmail(newOrder)
+  if (newOrder) {
+    // sendEmail(newOrder)
 
     return res.status(200).json({
       message: 'new order created succesfully',
@@ -85,17 +75,17 @@ async function check_AP_avilable (order) {
 }
 const getOrdersforUser = async (req, res) => {
   console.log('AcceptAdmin 😋🤩🙂😚')
- 
-  Order.find({ userId: req.params.userId })
+
+  Order.find({ userId: req.params.userId,accept:{$ne:0} })
     .populate({
       path: 'AdvertisingPointId',
       model: 'AdvertisingPoint',
-      populate: {path:'address',path:'size'}
-       // model: 'Street', 
+      populate: { path: 'address', path: 'size' }
+      // model: 'Street',
       // },
       //  populate: 'size'
-             //   path: 'size',
-      // //  model: 'Size', 
+      //   path: 'size',
+      // //  model: 'Size',
       // }
     })
     .populate('userId')
@@ -112,7 +102,7 @@ const getOrdersforUser = async (req, res) => {
     })
 }
 const deleteOrder = (req, res) => {
-  console.log('delete Order',req.params.userId,req.params.orderId)
+  console.log('delete Order', req.params.userId, req.params.orderId)
   Order.findByIdAndDelete(req.params.orderId).then(
     Order.find({ userId: req.params.userId })
       .populate({
@@ -137,29 +127,53 @@ const deleteOrder = (req, res) => {
       })
   )
 }
-async function sendEmail(order) {
-  let user =await User.findOne({_id: order.userId})
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'billboardcity123@gmail.com',
-    pass: '0548501781'
-  }
-});
-
-var mailOptions = {
-  from: 'no-repla@billboard.com',
-  to: user.email,
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
-  }
-});
+const changeAccept = async (req, res) => {
+  console.log('changeAccept', req.body)
+  const order = await Order.findOneAndUpdate(
+    { _id: req.body.orderId },
+    { $set: { accept: req.body.accept } },
+    { new: true },
+    (err, result) => {
+      if (err) {
+        return res.status(err)
+      }
+      if (req.body.accept == 1)
+        sendEmail(result, 'הזמנתך אושרה ברכות 😛', 'התשלום בוצע בהצלחה נתראה:)')
+      else sendEmail(result, 'הזמנתך לצערינו לא אושרה', 'האשראי לא חויב')
+      console.log(result);
+      return res.status(200).send(result)
+    }
+  ).clone();
 }
-module.exports = { createOrder, getOrdersforUser,deleteOrder ,getOrdersAwaitToAccept}
+async function sendEmail (order, subject, message) {
+  let user = await User.findOne({ _id: order.userId })
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'billboardcity123@gmail.com',
+      pass: '0548501781'
+    }
+  })
+
+  var mailOptions = {
+    from: 'no-replay@billboard.com',
+    to: user.email,
+    subject: subject,
+    text: message
+  }
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Email sent: ' + info.response)
+    }
+  })
+}
+module.exports = {
+  createOrder,
+  getOrdersforUser,
+  deleteOrder,
+  getOrdersAwaitToAccept,
+  changeAccept
+}

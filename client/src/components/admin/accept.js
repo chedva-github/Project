@@ -1,41 +1,69 @@
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
-import React ,{useEffect,useState} from 'react'
-import {useDispatch ,useSelector}from 'react-redux'
 import actions from '../../redux/action'
 
+export default function AcceptAdmin () {
+  const [state, setState] = useState(false)
+  const data = useSelector(state => state)
+  const dispatch = useDispatch()
 
-
-
-export default function AcceptAdmin(){
-  const [show, setShow] = useState(false)
-    const data = useSelector(state=>state)
-    const dispatch = useDispatch()
-
-    useEffect(() => {
+  useEffect(() => {
     dispatch(actions.getOrdersAwaitToAccept())
-    },[]);
-//     useEffect(() => {
-// console.log(data);
-//         },[data.order.awaitToAccept]);
-function accept(val){
+  }, [])
+  useEffect(() => {
+      if(data.order.awaitToAccept)
+    setState(data.order.awaitToAccept)
+  }, [data.order.awaitToAccept])
+  function accept (val) {
     alert('fe')
-    dispatch(actions.changeAccept({"accept":"1","orderId":val}))
-}
-function notAccept(e){
-    console.log(e)
-    alert(e)
-    dispatch(actions.changeAccept({"accept":"0","orderId":e}))
-}
-    return(
-        <>
-        <h1>הזמנות אלו מחכות לאישור</h1>
+    console.log(val)
+    dispatch(actions.changeAccept({ accept: '1', orderId: val }))
+  }
+  function notAccept (val) {
+       dispatch(actions.changeAccept({ accept: '0', orderId: val }))
+  }
+  return (
+    <>
+     {state.length>0 ? (<h1>הזמנות אלו מחכות לאישור</h1>):(<h1>אין הזמנות שמחכות לאישורך כרגע</h1>)}
 
-    {data.order.awaitToAccept&&data.order.awaitToAccept.map((value,index)=>{
-       return(<><h2>{value.accept}</h2><p>{value.startDate}</p>
-       <button onClick={accept}>מאשר</button>
-       <button onClick={e=>notAccept(e.target.value)} >לא מאשר</button>
-       </>  )
-    })}
-        </>
-    )
+      {state &&
+        state.map((value, index) => {
+          return (
+            <Card sx={{ maxWidth: 345 }} style={{ diraction: 'right' }}>
+              <CardMedia
+                component='img'
+                height='140'
+                image={value.img}
+                alt='green iguana'
+              />
+              <CardContent>
+                <Typography gutterBottom variant='h5' component='div'>
+                  ממתינה לאישור הזמנה ${value._id.slice(4)}
+                </Typography>
+                <Typography variant='body2' color='text.secondary'>
+                  הזמנת {value.AdvertisingPointId.size.sizeName}
+                  {value.startDate.split('T')[0]} בין התאריכים:
+                  {value.endDate.split('T')[0]} ל
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size='small' onClick={e => accept(value._id)}>
+                  מאשר
+                </Button>
+                <Button size='small' onClick={e => notAccept(value._id)}>
+                  לא מאשר
+                </Button>
+              </CardActions>
+            </Card>
+          )
+        })}
+    </>
+  )
 }

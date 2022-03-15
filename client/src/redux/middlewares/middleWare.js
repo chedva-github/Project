@@ -291,9 +291,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
         return next(action)
       })
       .catch(error => console.log('error', error))
-
-  } 
-  else if (action.type == 'GET_ORDERS_AWAIT_TO_ACCEPT') {
+  } else if (action.type == 'GET_ORDERS_AWAIT_TO_ACCEPT') {
     fetch(`http://localhost:4000/getOrdersAwaitToAccept`)
       .then(response => response.json())
       .then(result => {
@@ -302,6 +300,34 @@ export const middle = ({ dispatch, getState }) => next => async action => {
         return next(action)
       })
       .catch(error => console.log('error', error))
+  } else if (action.type == 'CHANGE_ACCEPT') {
+    var myHeaders = new Headers()
+    myHeaders.append('Content-Type', 'application/json')
+    alert(action.payload)
+    console.log(action.payload);
+    var raw = JSON.stringify(action.payload)
+    console.log(raw);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow',
+      body: raw
+    }
+    fetch(
+      `http://localhost:4000/changeAccept`,
+      requestOptions
+    )
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        dispatch({ type: 'SET_ORDERS_AFTER_CENCEL', payload: result._id })
+
+        //  action.payload = result._id
+        // return next(action)
+      })
+      .catch(error => console.log('error', error))
+    return next(action)
   }
   return next(action)
 }

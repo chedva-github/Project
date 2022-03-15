@@ -20,7 +20,7 @@ export default function BillBoardTable (props) {
   }, [])
 
   useEffect( () => {
-    
+    console.log(billboarddata);
     setBillboarddata(data.AdvertisingPoint.advertisingPoint)
    }, [data.AdvertisingPoint?.advertisingPoint])
 
