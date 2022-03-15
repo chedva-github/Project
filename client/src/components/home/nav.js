@@ -1,72 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
+import { NavLink } from 'react-router-dom'
+
 import { useSelector } from 'react-redux'
 import Profil from './profil'
-export default function NavFunc () {
+export default function NavFunc() {
   const [isLogin, setIsLogin] = useState(false)
   const data = useSelector(state => state.user)
+
   useEffect(() => {
-    if(data.currentUser){
-    setIsLogin(true)
+    if (data.currentUser) {
+      setIsLogin(true)
     }
-  },[data.currentUser])
+  }, [data.currentUser])
+  const activeStyle = { color: 'pink' };
   return (
     <>
-      <Nav navbar fill variant='tabs' defaultActiveKey='/Home'>
-       
-        {/* <Nav.Item>
-          <Nav.Link>
-            {' '}
-            <Link to='/'>Home</Link>
-          </Nav.Link>
-        </Nav.Item> */}
-        {/* <Nav.Item>
-          <Nav.Link>
-            <Link to='/Sign-up'>Sign up</Link>
-          </Nav.Link>
-        </Nav.Item> */}
-         
-        {/* <Nav.Item>
-          <Nav.Link>
-            <Link to='/Login'>כניסה</Link>
-          </Nav.Link>
-        </Nav.Item> */}
-        <Nav.Item>
-          <Nav.Link>
-            <Link to='/About'>אודותינו</Link>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <Link to='/Campains'>קמפיינים</Link>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <Link to='/Locations'>הזמנת שלט</Link>
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link>
-            <Link to='/Customers'>מלקוחותינו</Link>
-          </Nav.Link>
-        </Nav.Item>
-        {/* <Nav.Item>
-          <Nav.Link>
-            <Link to='/Graphs'>הלוחות החמים👌</Link>
-          </Nav.Link>
-        </Nav.Item> */}
-        {data?.isAdmin ? (
-          <Nav.Item>
-            <Nav.Link>
-              <Link to='/Orders'>Ordersd</Link>
-            </Nav.Link>
-          </Nav.Item>
-        ) : null}
-      {isLogin? <Profil />:null}
+      <ul className='ul-nav'>
+      <li><NavLink exact activeClassName="active" to='/Customers'>מלקוחותינו</NavLink></li>
+        <li><NavLink exact activeClassName="active" to='/Campains'>קמפיינים</NavLink></li>
+        <li><NavLink exact activeClassName="active" to='/Locations'>הזמנת שלט</NavLink></li>
+        {/* <li><NavLink exact activeClassName="active" to='/Graphs'>הלוחות החמים👌</NavLink></li> */}
+        <li><NavLink exact activeClassName="active" to='/About'>אודותינו</NavLink></li>
 
-      </Nav>
+
+        {data?.isAdmin ? (
+          <li><NavLink exact activeClassName="active" to='/Orders'>Ordersd</NavLink></li>
+        ) : null}
+        {isLogin ? <Profil /> : null}
+      </ul>
     </>
+
   )
+
 }

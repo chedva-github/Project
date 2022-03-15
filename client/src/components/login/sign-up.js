@@ -19,7 +19,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className='container'>
+        <div className='container-home'>
             {/* <h1>hello {data.currentUser?.name}</h1> */}
             <div className='container-sign-in'>
                 <form className="center" onSubmit={(e) => initUser(e)}>
