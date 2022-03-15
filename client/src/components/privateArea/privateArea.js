@@ -31,7 +31,8 @@ export default function PrivateArea() {
   return (
     <>
       <h1>:אזור אישי</h1>
-      שלום {data?.user?.currentUser?.name}
+     <h3> שלום {data?.user?.currentUser?.name}</h3>
+
 
 
       {/* {data?.user?.isAdmin?  */}

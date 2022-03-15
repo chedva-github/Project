@@ -6,7 +6,6 @@ export default function Customers() {
     return (
         <>
             <div className="costom-table">
-                <h1>:לקוחות שלנו</h1>
                 <table align="center" cellSpacing="50px" >
                     <tr>
                         <td align="center">

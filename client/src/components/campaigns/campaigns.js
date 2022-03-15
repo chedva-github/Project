@@ -46,7 +46,6 @@ export default function Campains() {
                 </div>
             </div> */}
             <div className="comp-table">
-                <h1>:קמפיינים שלנו</h1>
                 <table align="center" >
                     <tr>
                         <td align="center">
