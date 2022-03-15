@@ -10,7 +10,7 @@ import './locations.css'
 import action from '../../redux/action'
 import UploadImg from './uploadImg'
 import DateRange from './datePicker'
-export default function Location (props) {
+export default function Location(props) {
   const dispatch = useDispatch()
   const data = useSelector(state => state)
   const [arrSize, setArrSize] = useState([])
@@ -18,17 +18,17 @@ export default function Location (props) {
   const [date, setDate] = useState()
   const navigate = useNavigate()
 
-  useEffect( () => {
-     dispatch(action.getAllStreets())
-     dispatch(action.getAllSize())
+  useEffect(() => {
+    dispatch(action.getAllStreets())
+    dispatch(action.getAllSize())
   }, [])
 
   useEffect(() => {
     if (data.size.size) {
 
-    let size1 = data.size.size.map(si => si.sizeName)
-    console.log(size1);
-    setArrSize(size1)
+      let size1 = data.size.size.map(si => si.sizeName)
+      console.log(size1);
+      setArrSize(size1)
     }
   }, [data.size?.size])
 
@@ -46,7 +46,7 @@ export default function Location (props) {
     alert('ssd')
   }
 
-  function sortStreet (size) {
+  function sortStreet(size) {
     var streetFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.size.sizeName == size) {
@@ -58,7 +58,7 @@ export default function Location (props) {
     console.log(streetFromAdvertisingPoing)
     setArrStreet(streetFromAdvertisingPoing)
   }
-  function sortSize (street) {
+  function sortSize(street) {
     var sizeFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.address?.streetName == street) {
@@ -70,7 +70,7 @@ export default function Location (props) {
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
   }
-  async function submit () {
+  async function submit() {
     const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
       x =>
         x.address._id == data.order.orderStreet._id &&
@@ -87,59 +87,59 @@ export default function Location (props) {
   }
   return (
     <div>
-      <MyMapComponent></MyMapComponent>
+      <h1>:הזמנת שלט</h1>
+      <div className='location-container'>
 
-      <div className='topcorner '>
-        <h2>Location</h2>
-        <br />
-        <DateRange />
 
-        <br />
-        <br />
-    
-        <div>
-          <input
-            list='ice'
-            id='ice-cream'
-            onChange={e => sortSize(e.target.value)}
-            defaultValue={
-              data?.street?.street?.find(x => x._id == data?.AdvertisingPoint?.street)
-                ?.streetName
-            }
-            name='ice-cream'
-            placeholder='בחר רחוב'
-          />
-          <datalist id='ice'>
-            {arrStreet?.map((item, key) => {
-              return <option key={key} value={item}></option>
-            })}
-          </datalist>
+        <div className='map'>
+          <MyMapComponent></MyMapComponent>
         </div>
+        <div className='topcorner '>
+          <br />
+          <DateRange />
+          <br />
+          <div className='input-location'>
+            <input
+              list='ice'
+              id='ice-cream'
+              onChange={e => sortSize(e.target.value)}
+              defaultValue={
+                data?.street?.street?.find(x => x._id == data?.AdvertisingPoint?.street)
+                  ?.streetName
+              }
+              name='ice-cream'
+              placeholder='בחר רחוב'
+            />
+            <datalist id='ice'>
+              {arrStreet?.map((item, key) => {
+                return <option key={key} value={item}></option>
+              })}
+            </datalist>
 
-        <br />
-        <div>
-          <input
-           list='ice2'
-            onChange={e => sortStreet(e.target.value)}
-            defaultValue={
-              data?.size?.size?.find(x => x._id == data?.AdvertisingPoint?.size)
-                ?.sizeName
-            }
-            name='size'
-            placeholder='בחר גודל'
-          />
-          <datalist id='ice2'>
-            {arrSize?.map((item, key) => {
-              return <option key={key} value={item}></option>
-            })}
-          </datalist>
+            <input
+              list='ice2'
+              onChange={e => sortStreet(e.target.value)}
+              defaultValue={
+                data?.size?.size?.find(x => x._id == data?.AdvertisingPoint?.size)
+                  ?.sizeName
+              }
+              name='size'
+              placeholder='בחר גודל'
+            />
+            <datalist id='ice2'>
+              {arrSize?.map((item, key) => {
+                return <option key={key} value={item}></option>
+              })}
+            </datalist>
+          </div>
+
+          <UploadImg />
+          <button
+            className='btn-location'
+            //  disabled={!street || !date || !size}
+            onClick={submit}
+          >לתשלום</button>
         </div>
-
-        <UploadImg />
-        <button
-          //  disabled={!street || !date || !size}
-          onClick={submit}
-        ></button>
       </div>
     </div>
   )

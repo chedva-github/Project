@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import { useNavigate } from 'react-router-dom'
+import './login.css'
 
 export default function Login() {
     const navigate = useNavigate()
@@ -35,24 +36,26 @@ export default function Login() {
             navigate('/Orders')
 
     return (
-        <div>
-            <form className="center" onSubmit={(e) => initUser(e)}>
-                <InputLabel>הרשמה לאתר!</InputLabel>
-                <br />
-                <br />
-                <TextField value={name} onChange={(e) => { setName(e.target.value) }} className="element" id="outlined-basic" label="name" variant="outlined" type="text" placeholder="enter name" />
-                <br />
-                <br />
-                <TextField value={password} onChange={(e) => { setPassword(e.target.value) }} className="element" id="outlined-basic" label="password" variant="outlined" type="password" placeholder="enter password" />
-                <br />
-                <br />
-                <Button type="submit" className="element" variant="contained" color="primary">כניסה </Button>
-                <br />
-                <br />
-                <Button type='button' onClick={()=>navigate('/Sign-up')} className="element" variant="contained" color="primary"> אין לך חשבון? </Button>
+        <div className='container-home'>
+            <div className='container-login'>
+                <form className="center" onSubmit={(e) => initUser(e)}>
+                    <InputLabel>הרשמה לאתר!</InputLabel>
+                    <TextField value={name} onChange={(e) => { setName(e.target.value) }} className="element" id="outlined-basic" label="שם" variant="outlined" type="text" placeholder="הכנס שם" />
+                    <br />
+                    <TextField value={password} onChange={(e) => { setPassword(e.target.value) }} className="element" id="outlined-basic" label="סיסמה" variant="outlined" type="password" placeholder="הכנס סיסמה" />
+                    <br />
+                    <div className='enter'>
+                        <Button type="submit" className="element" variant="contained" color="primary">כניסה </Button>
 
-            </form>
-            <h1>hello {data.currentUser?.name}</h1>
+                    </div>
+                    <div className='new-client'>
+                        <Button type='button' onClick={() => navigate('/Sign-up')} className="element" variant="text" color="secondary"> אין לך חשבון? </Button>
+                    </div>
+                </form>
+            </div>
+            {/* {data.currentUser.name? */}
+            {/* <h2>hello {data.currentUser?.name}</h2> */}
+            {/* :null} */}
         </div>
     )
 }
