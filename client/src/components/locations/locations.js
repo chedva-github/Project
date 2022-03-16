@@ -87,7 +87,6 @@ export default function Location(props) {
   }
   return (
     <div>
-      <h1>:הזמנת שלט</h1>
       <div className='location-container'>
 
 

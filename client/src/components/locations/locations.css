@@ -1,8 +1,4 @@
-.location-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .input {
     position: 100px 50px;  
     /* top: 150%;

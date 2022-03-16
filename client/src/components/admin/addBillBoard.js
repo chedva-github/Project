@@ -9,11 +9,12 @@ import actions from '../../redux/action'
 export default function AddBillboard (props) {
   const dispatch = useDispatch()
   const data = useSelector(state => state)
+  const childProps = { ...props };
   const [billboard, setBillboard] = useState({
     _id: '',
     address: '',
     size: '',
-    // status: '',
+     status: 'false',
     price: ''
   })
   const [show, setShow] = useState(true)
@@ -21,10 +22,14 @@ export default function AddBillboard (props) {
   const [sizeList, setSizeList] = useState([])
 
   useEffect(() => {
-    setShow(true)
+    if(props.prop=='add')    setShow(true)
+
     if (props.prop === 'edit') {
+      setShow(true)
+
       // setBillboard(data.AdvertisingPoint.advertisingPoint[props.index])
       setBillboard({
+
         _id: data.AdvertisingPoint.advertisingPoint[props.index]._id,
         size:
           data.AdvertisingPoint.advertisingPoint[props.index].size?.sizeName,
@@ -42,8 +47,9 @@ export default function AddBillboard (props) {
     let size1 = data.size?.size?.map(street => street.sizeName)
     let size2 = size1.filter(x=>x!==undefined)
 
-    setSizeList(size2
-      )
+    setSizeList(size2)
+    delete childProps.prop;
+
   }, [])
   const closeModal = () => {
     setShow(false)
@@ -89,8 +95,8 @@ export default function AddBillboard (props) {
                 renderInput={params => <TextField {...params} />}
                 defaultValue={
                   props.index
-                    ? data.AdvertisingPoint.advertisingPoint[props.index]
-                        .address?.streetName
+                    ? data.AdvertisingPoint?.advertisingPoint[props.index]
+                        ?.address?.streetName
                     : ''
                 }
                 onChange={handleChangAddress}
@@ -107,8 +113,8 @@ export default function AddBillboard (props) {
                 renderInput={params => <TextField {...params} />}
                 defaultValue={
                   props.index
-                    ? data.AdvertisingPoint.advertisingPoint[props.index]
-                        .size?.sizeName
+                    ? data.AdvertisingPoint?.advertisingPoint[props.index]
+                        ?.size?.sizeName
                     : ''
                 }
                 onChange={handleChangSize}
@@ -134,7 +140,7 @@ export default function AddBillboard (props) {
                 type='number'
                 defaultValue={
                   props.index
-                    ? data.AdvertisingPoint.advertisingPoint[props.index].price
+                    ? data.AdvertisingPoint?.advertisingPoint[props.index]?.price
                     : ''
                 }
                 // defaultValue={billboard.descraption}

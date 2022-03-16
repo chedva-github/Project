@@ -147,7 +147,6 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'DELETE_ONE_ADVERTISING_POINT') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    alert('myHead')
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
@@ -161,7 +160,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        action.payload = result
+        dispatch({ type: 'SET_ADVERTISING_AFTER_CENCEL', payload: result })
         return next(action)
       })
       .catch(error => console.log('error', error))
@@ -243,7 +242,6 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'CENCEL_ORDER') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    alert('myHead')
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
@@ -321,7 +319,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        dispatch({ type: 'SET_ORDERS_AFTER_CENCEL', payload: result._id })
+        dispatch({ type: 'SET_ORDERS_AFTER_ECCEPT', payload: result._id })
 
         //  action.payload = result._id
         // return next(action)
@@ -329,5 +327,31 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .catch(error => console.log('error', error))
     return next(action)
   }
+  else if (action.type == 'GET_POPULARITY_BB') {
+    var myHeaders = new Headers()
+    myHeaders.append('Content-Type', 'application/json')
+    console.log(action.payload);
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow',
+    }
+    fetch(
+      `http://localhost:4000/getPopularyBillBoard`,
+      requestOptions
+    )
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        // dispatch({ type: 'SET_ORDERS_AFTER_ECCEPT', payload: result._id })
+
+         action.payload = result
+        // return next(action)
+      })
+      .catch(error => console.log('error', error))
+    return next(action)
+  }
+  
   return next(action)
 }

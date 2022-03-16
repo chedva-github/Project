@@ -52,18 +52,12 @@ export default function NavFunc () {
             <Link to='/Customers'>מלקוחותינו</Link>
           </Nav.Link>
         </Nav.Item>
-        {/* <Nav.Item>
+        <Nav.Item>
           <Nav.Link>
             <Link to='/Graphs'>הלוחות החמים👌</Link>
           </Nav.Link>
-        </Nav.Item> */}
-        {data?.isAdmin ? (
-          <Nav.Item>
-            <Nav.Link>
-              <Link to='/Orders'>Ordersd</Link>
-            </Nav.Link>
-          </Nav.Item>
-        ) : null}
+        </Nav.Item>
+      
       {isLogin? <Profil />:null}
 
       </Nav>

@@ -28,12 +28,12 @@ export default function BillBoardTable (props) {
   const handleEdit = index => {
     setEditshow(index)
   }
-  const handleDelete = index => {
-    dispatch(actions.deleteOneAdvertisingPoint(billboarddata[index]._id))
+  const handleDelete = async index => {
+   await dispatch(actions.deleteOneAdvertisingPoint(billboarddata[index]._id))
   }
   return (
     <>
-      <h2> שלטי חוצות פתח תקווה</h2>
+      {/* <h2> שלטי חוצות בפתח תקווה</h2> */}
 
        <Container>
  
@@ -49,7 +49,7 @@ export default function BillBoardTable (props) {
             </tr>
           </thead>
           <tbody>
-            {billboarddata &&
+            {billboarddata.length > 0 && 
               billboarddata.map((billBoard, index) => {
                 return (
                   <>
@@ -73,7 +73,7 @@ export default function BillBoardTable (props) {
                         </div>
                       </td>
                       <td>{billBoard.price}</td>
-                      <td>{billBoard.status.toString()}</td>
+                      <td>{billBoard.status?.toString()}</td>
                       <td>{billBoard.size?.sizeName}</td>
                       <td>{billBoard.address?.streetName}</td>
                     </tr>

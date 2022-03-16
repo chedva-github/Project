@@ -38,6 +38,7 @@ router.get('getAdvertisingPoint/:id', AdvertisingPoint.getAdvertisingPoint)
 router.put('/updateAdvertisingPoint', AdvertisingPoint.updateAdvertisingPoint)
 router.post('/deleteAdvertisingPoint/:id', AdvertisingPoint.deleteAdvertisingPoint)
 router.get('/getAllAdvertisingPoint', AdvertisingPoint.getAllAdvertisingPoint)
+router.get('/getPopularyBillBoard', AdvertisingPoint.getPopularyBillBoard)
 
 
 router.get('/getAllStreets', streets.getAllStreets)
@@ -51,6 +52,7 @@ router.get('/getOrdersAwaitToAccept', orderController.getOrdersAwaitToAccept)
 router.post('/changeAccept', orderController.changeAccept)
 
 router.post('/uploadImg', uploadImg.uploadImg)
+
 
 
 module.exports = router

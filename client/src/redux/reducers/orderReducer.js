@@ -36,6 +36,7 @@ const order = {
 
   setOrdersAfterCencel (state, action) {
     state.orders = action.payload
+    
   },
   setImg (state, action) {
     alert(action.payload)
@@ -45,7 +46,8 @@ const order = {
   getOrdersAwaitToAccept (state, action) {
     state.awaitToAccept = action.payload
   },
-setOrdersAfterCencel (state, action) {
+setOrdersAfterEccept (state, action) {
+
   state.awaitToAccept = state.awaitToAccept.filter(a=>a._id!=action.payload)
   console.log("afterrFilter",state.awaitToAccept);
 },
