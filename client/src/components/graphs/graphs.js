@@ -62,14 +62,23 @@ import actions from '../../redux/action'
 export default function Graphs (props) {
   const dispatch = useDispatch()
   const data = useSelector(state => state)
-const [popularity,setPopularity]= useState()
+  const [popularity, setPopularity] = useState()
   useEffect(() => {
-      dispatch(actions.getPopularityBb())
-  }, [])
+    dispatch(actions.getPopularityBb())
+    setPopularity(data.AdvertisingPoint?.popularityBB)
+  }, [data.AdvertisingPoint?.popularityBB])
   return (
-  <>
-  
-  
-  </>
+    <div className=''>
+      {popularity &&
+        popularity.map((p, index) => {
+          return (
+            <>
+              <h2>{p.count}</h2>
+              <h3>{p.AP.address.streetName}</h3>
+              <p>------------------------------------</p>
+            </>
+          )
+        })}
+    </div>
   )
 }

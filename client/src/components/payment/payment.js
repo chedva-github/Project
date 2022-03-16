@@ -146,7 +146,7 @@ export default function Payment (props) {
                   className='form-control'
                   placeholder='הסכום לתשלום'
                   value={sum}
-                  readonly
+                  // readonly
                   // onFocus={handleInputFocus}
                 />
               </div>

@@ -41,8 +41,13 @@ setCurrentAdvertstingPoint(state, action){
   state.currentAdvertstingPoint = action.payload
 },
 getPopularityBb(state, action){
+  // state.popularityBB = action.payload
+},
+setPopular(state, action){
   alert("Fd")
+
   state.popularityBB = action.payload
+
 },
   initialState
 }

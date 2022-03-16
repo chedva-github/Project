@@ -344,10 +344,9 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        // dispatch({ type: 'SET_ORDERS_AFTER_ECCEPT', payload: result._id })
-
-         action.payload = result
-        // return next(action)
+        dispatch({ type: 'SET_POPULAR', payload: result})
+        
+      return next(action)
       })
       .catch(error => console.log('error', error))
     return next(action)
