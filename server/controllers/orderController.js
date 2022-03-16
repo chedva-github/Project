@@ -74,9 +74,8 @@ async function check_AP_avilable (order) {
   return available
 }
 const getOrdersforUser = async (req, res) => {
-  console.log('AcceptAdmin 😋🤩🙂😚')
 
-  Order.find({ userId: req.params.userId,accept:{$ne:0} })
+  Order.find({ userId: req.params.userId})
     .populate({
       path: 'AdvertisingPointId',
       model: 'AdvertisingPoint',

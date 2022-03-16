@@ -126,10 +126,20 @@ const getPopularyBillBoard = async (req, res) => {
 
   const order = await   Order.aggregate([{$group:{_id:"$AdvertisingPointId", data:{$push:"$$ROOT"}}}])
 console.log("OOORRRDDDEERR",order);
+let element = []
+for (let i=0;i<order.length;i++) {
+  console.log("key",order[i]);
+  let AP=await AdvertisingPoint.findById(order[i]._id).populate('address').populate('size')
+   element.push({"AP": AP,"count":order[i].data.length});
+    
+  }
+
+  console.log(element);
+
 //  const popular = order.forEach(async (x)=>await AdvertisingPoint.findById(x._id))
 //  console.log("OOORRRDDDEERR",popular);
 
-  return res.status(200)
+  return res.status(200).send(element)
 }
 const setAPstatus= async (req, res) => {
 
