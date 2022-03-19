@@ -51,7 +51,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       console.log('i am  here')
       const res = await axios.get('http://localhost:4000/getAllStreets')
       console.log('res', res.data)
-      alert(res.data)
+     // alert(res.data)
       action.payload = res.data
       return next(action)
     } catch (e) {
@@ -147,7 +147,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'DELETE_ONE_ADVERTISING_POINT') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    alert('myHead')
+    //alert('myHead')
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
@@ -243,7 +243,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'CENCEL_ORDER') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    alert('myHead')
+    //alert('myHead')
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',

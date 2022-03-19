@@ -16,7 +16,7 @@ function MapGoogle(props) {
     <>
       <div className="mt-5">
         <Map google={props.google} zoom={14}
-          style={{ width: '45%', height: '70%', position: 'relative' }}
+          // style={{ width: '45%', height: '70%', position: 'relative' }}
           initialCenter={{
             lat: 32.089870,
             lng: 34.880451

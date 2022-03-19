@@ -13,7 +13,7 @@ import './payment.css'
 import { useDispatch, useSelector } from 'react-redux'
 import actions from '../../redux/action'
 
-export default function Payment (props) {
+export default function Payment(props) {
   const navigate = useNavigate()
   const { state } = useLocation()
   // const { date, size, street } = state
@@ -33,7 +33,7 @@ export default function Payment (props) {
   const form = useRef()
   const date = data.AdvertisingPoint.currentAdvertstingPoint.startDate
   const street = data.AdvertisingPoint.currentAdvertstingPoint.street
-  const size ="tuyucux"
+  const size = "tuyucux"
   useEffect(() => {
 
     if (data.order.available == 200) return navigate('/OrderSuccess')
@@ -49,24 +49,24 @@ export default function Payment (props) {
 
   useEffect(() => {
     setSum(data.AdvertisingPoint.currentAdvertstingPoint.price)
-      // data?.AdvertisingPoint?.advertisingPoint.find(
-      //   x =>
-      //     x.address ==
-      //     data?.streets?.streets.find(s => s.streetName == street)._id
-      // )?.basicPriceWeek
+    // data?.AdvertisingPoint?.advertisingPoint.find(
+    //   x =>
+    //     x.address ==
+    //     data?.streets?.streets.find(s => s.streetName == street)._id
+    // )?.basicPriceWeek
     //)
     setCreateOrderObj({
-      userId: data.user.currentUser._id,
+      userId: data.user.currentUser?._id,
       AdvertisingPointId: data.AdvertisingPoint.currentAdvertstingPoint._id,
       startDate: data.order.startDate,
       endDate: data.order.endDate,
-      img:data.order.orderImg
+      img: data.order.orderImg
     })
     console.log(state)
   }, [])
 
   const handleInputFocus = ({ target }) => {
-      setFocused(target.name)
+    setFocused(target.name)
   }
 
   const handleCallback = ({ issuer }, isValid) => {
@@ -115,86 +115,93 @@ export default function Payment (props) {
         <div className='App-payment'>
           {/* <h1> student payment:הסכום לתשלום הוא</h1> */}
           {/* onSubmit={this.handleSubmit} */}
-          <form ref={form} onSubmit={handleSubmit}>
-            <Card
-              number={number}
-              name={name}
-              expiry={expiry}
-              cvc={cvc}
-              focused={focused}
-              callback={handleCallback}
-              sum={sum}
-            />
-            <div className='row'>
-              <div className='form-group col-12'>
-                <input
-                  type='tel'
-                  name='number'
-                  className='form-control'
-                  placeholder='הכנס מספר אשראי'
-                  pattern='[\d| ]{16,22}'
-                  required
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-                <small>Ex.: 36., 37., 41., 51., 60...</small>
+          <div className='form-payment'>
+            <form ref={form} onSubmit={handleSubmit}>
+              <Card
+                number={number}
+                name={name}
+                expiry={expiry}
+                cvc={cvc}
+                focused={focused}
+                callback={handleCallback}
+                sum={sum}
+              />
+              <div className='row'>
+                <div className='col-6 form-group'>
+                  <input
+                    type='tel'
+                    name='number'
+                    className='form-control'
+                    placeholder='הכנס מספר אשראי'
+                    pattern='[\d| ]{16,22}'
+                    required
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                  />
+                  {/* <small>Ex.: 36., 37., 41., 51., 60...</small> */}
+                </div>
+                <div className='col-6 form-group'>
+                  <input
+                    type='tel'
+                    name='expiry'
+                    className='form-control'
+                    placeholder='תוקף'
+                    pattern='\d\d/\d\d'
+                    required
+                    //   disabled={checkSum()}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                  />
+                </div>
+                <div className='col-6 form-group'>
+                  <input
+                    type='tel'
+                    name='cvc'
+                    className='form-control'
+                    placeholder='CVC'
+                    pattern='\d{3,4}'
+                    required
+                    //   disabled={checkSum()}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                  />
+                </div>
+                <div className='col-6 form-group'>
+                  <input
+                    type='number'
+                    name='sum'
+                    className='form-control'
+                    placeholder='הסכום לתשלום'
+                    value={sum}
+                    onFocus={handleInputFocus}
+                  />
+                </div>
+                <div className='col-12 form-group'>
+                  <input
+                    type='text'
+                    name='name'
+                    className='form-control-name'
+                    placeholder='שם בעל האשראי'
+                    required
+                    //   disabled={checkSum()}
+                    onChange={handleInputChange}
+                    onFocus={handleInputFocus}
+                  />
+                </div>
+
+                <input type='hidden' name='issuer' value={issuer} />
+                <div className=' btn-f'>
+
+                  <div className='form-actions col-12'>
+                    <button type='submit' className='btn btn-primary btn-block'>
+
+                      אשור
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className='form-group col-12'>
-                <input
-                  type='number'
-                  name='sum'
-                  className='form-control'
-                  placeholder='הסכום לתשלום'
-                  value={sum}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <div className='form-group col-12'>
-                <input
-                  type='text'
-                  name='name'
-                  className='form-control'
-                  placeholder='שם בעל האשראי'
-                  required
-                  //   disabled={checkSum()}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <div className='col-6 form-group'>
-                <input
-                  type='tel'
-                  name='expiry'
-                  className='form-control'
-                  placeholder='תאריך תפוגה'
-                  pattern='\d\d/\d\d'
-                  required
-                  //   disabled={checkSum()}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <div className='col-6 form-group'>
-                <input
-                  type='tel'
-                  name='cvc'
-                  className='form-control'
-                  placeholder='CVC'
-                  pattern='\d{3,4}'
-                  required
-                  //   disabled={checkSum()}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <input type='hidden' name='issuer' value={issuer} />
-              <div className='form-actions col-12'>
-                <button type='submit' className='btn btn-primary btn-block'>
-                  אשור
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
           {formData && (
             <div className='App-highlight'>
               {formatFormData(formData).map((d, i) => (
@@ -202,7 +209,7 @@ export default function Payment (props) {
               ))}
             </div>
           )}
-          <hr style={{ margin: '60px 0 30px' }} />
+          <hr className='btn-hr' style={{ margin: '60px 0 30px' }} />
         </div>
       </div>
     </>

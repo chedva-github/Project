@@ -18,7 +18,7 @@ export default function NavFunc() {
   return (
     <>
       <ul className='ul-nav'>
-      <li><NavLink exact activeClassName="active" to='/Customers'>מלקוחותינו</NavLink></li>
+      {/* <li><NavLink exact activeClassName="active" to='/Customers'>מלקוחותינו</NavLink></li> */}
         <li><NavLink exact activeClassName="active" to='/Campains'>קמפיינים</NavLink></li>
         <li><NavLink exact activeClassName="active" to='/Locations'>הזמנת שלט</NavLink></li>
         {/* <li><NavLink exact activeClassName="active" to='/Graphs'>הלוחות החמים👌</NavLink></li> */}
@@ -26,7 +26,7 @@ export default function NavFunc() {
 
 
         {data?.isAdmin ? (
-          <li><NavLink exact activeClassName="active" to='/Orders'>Ordersd</NavLink></li>
+          <li ><NavLink exact activeClassName="active" to='/Orders'>Ordersd</NavLink></li>
         ) : null}
         {isLogin ? <Profil /> : null}
       </ul>

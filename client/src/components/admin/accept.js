@@ -18,12 +18,12 @@ export default function AcceptAdmin(){
 // console.log(data);
 //         },[data.order.awaitToAccept]);
 function accept(val){
-    alert('fe')
+    //alert('fe')
     dispatch(actions.changeAccept({"accept":"1","orderId":val}))
 }
 function notAccept(e){
     console.log(e)
-    alert(e)
+    //alert(e)
     dispatch(actions.changeAccept({"accept":"0","orderId":e}))
 }
     return(

@@ -68,7 +68,7 @@ export default function Campains() {
                     <tr>
                         <td align="center">
                             <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/68734349_2420124674690971_6262249612501843968_n-1-okat8o0c15o2rknswzkvqzf05wq3ofhdojf1ksukn4.jpg" ></img>
-                            <p>BBB אשדוד</p>
+                            <p>BBB </p>
                         </td>
                         <td align="center">
                             <img src="https://zohar-adv.co.il/wp-content/uploads/elementor/thumbs/68950134_2420018384701600_6008831423752962048_n-okasjhvx0v7nvh7zw3wizc2nigs9k7k4vyiyy2639c.jpg" ></img>

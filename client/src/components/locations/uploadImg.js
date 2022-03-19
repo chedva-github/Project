@@ -36,7 +36,7 @@ export default function UploadImg(props) {
     return (
         <form className='img-ads' onSubmit={onFormSubmit}>
             <div className="btn-save">
-                <input type="file" name="myImage" onChange={onChange} />העלאת תמונה לשלט
+                <input type="file" name="myImage" onChange={onChange} />  העלאת תמונה לשלט
                 <button type="submit" className='btn-location-save'>שמור</button>
             </div>
         </form>

@@ -73,7 +73,7 @@ export default function BillBoardTable (props) {
                         </div>
                       </td>
                       <td>{billBoard.price}</td>
-                      <td>{billBoard.status.toString()}</td>
+                      {/* <td>{billBoard.status.toString()}</td> */}
                       <td>{billBoard.size?.sizeName}</td>
                       <td>{billBoard.address?.streetName}</td>
                     </tr>

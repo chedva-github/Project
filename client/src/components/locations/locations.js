@@ -43,7 +43,7 @@ export default function Location(props) {
   }, [data.streets?.streets])
 
   const handleChangAddress = () => {
-    alert('ssd')
+    // alert('ssd')
   }
 
   function sortStreet(size) {
@@ -86,60 +86,68 @@ export default function Location(props) {
     alert(files.target.value)
   }
   return (
-    <div>
-      <div className='location-container'>
+    <div className='location-container'>
 
 
-        <div className='map'>
-          <MyMapComponent></MyMapComponent>
-        </div>
-        <div className='topcorner '>
-          <br />
-          <DateRange />
-          <br />
-          <div className='input-location'>
-            <input
-              list='ice'
-              id='ice-cream'
-              onChange={e => sortSize(e.target.value)}
-              defaultValue={
-                data?.street?.street?.find(x => x._id == data?.AdvertisingPoint?.street)
-                  ?.streetName
-              }
-              name='ice-cream'
-              placeholder='בחר רחוב'
-            />
-            <datalist id='ice'>
-              {arrStreet?.map((item, key) => {
-                return <option key={key} value={item}></option>
-              })}
-            </datalist>
-
-            <input
-              list='ice2'
-              onChange={e => sortStreet(e.target.value)}
-              defaultValue={
-                data?.size?.size?.find(x => x._id == data?.AdvertisingPoint?.size)
-                  ?.sizeName
-              }
-              name='size'
-              placeholder='בחר גודל'
-            />
-            <datalist id='ice2'>
-              {arrSize?.map((item, key) => {
-                return <option key={key} value={item}></option>
-              })}
-            </datalist>
-          </div>
-
-          <UploadImg />
-          <button
-            className='btn-location'
-            //  disabled={!street || !date || !size}
-            onClick={submit}
-          >לתשלום</button>
-        </div>
+      <div className='map'>
+        <MyMapComponent></MyMapComponent>
       </div>
+      {/* <form className='form-loc'> */}
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <DateRange />
+      <br />
+
+      <input
+        list='ice'
+        id='ice-cream'
+        onChange={e => sortSize(e.target.value)}
+        defaultValue={
+          data?.street?.street?.find(x => x._id == data?.AdvertisingPoint?.street)
+            ?.streetName
+        }
+        
+        className='input-loc'
+        name='ice-cream'
+        placeholder='בחר רחוב'
+      />
+
+      <datalist id='ice'>
+        {arrStreet?.map((item, key) => {
+          return <option key={key} value={item}></option>
+        })}
+      </datalist>
+
+      <input
+        list='ice2'
+        onChange={e => sortStreet(e.target.value)}
+        defaultValue={
+          data?.size?.size?.find(x => x._id == data?.AdvertisingPoint?.size)
+            ?.sizeName
+        }
+        name='size'
+        className='input-loc'
+        placeholder='בחר גודל'
+      />
+      <datalist id='ice2'>
+        {arrSize?.map((item, key) => {
+          return <option key={key} value={item}></option>
+        })}
+      </datalist>
+      <br />
+
+      <UploadImg />
+      <br />
+
+      <button
+        className='btn-location'
+        //  disabled={!street || !date || !size}
+        onClick={submit}
+      >לתשלום</button>
+      {/* </form> */}
     </div>
   )
 }
