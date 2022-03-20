@@ -19,7 +19,7 @@ const createUAdvertisingPoint = async (req, res) => {
     address: address.id,
     size: size._id,
     price: req.body.price,
-    status: false
+    status: 0
   })
   
   try {
@@ -100,11 +100,11 @@ const deleteAdvertisingPoint = (req, res) => {
   console.log('delete AdvertisingPoint')
   AdvertisingPoint.findByIdAndDelete(req.params.id)
     .then(async () => {
-      await AdvertisingPoint.find()
+      await AdvertisingPoint.find({})
         .populate('size')
         .populate('address')
         .then(ad => {
-          res.status(200).send(ad)
+         return res.status(200).send(ad)
         })
     })
     .catch(err => res.send(err))
@@ -120,10 +120,31 @@ const getAllAdvertisingPoint = (req, res) => {
     })
     .catch(err => res.send(err))
 }
+
+const getPopularyBillBoard = async (req, res) => {
+  // db.collection.aggregate([{$group:{_id:"$name", data:{$push:"$$ROOT"}}}])
+
+  const order = await   Order.aggregate([{$group:{_id:"$AdvertisingPointId", data:{$push:"$$ROOT"}}}])
+console.log("OOORRRDDDEERR",order);
+let element = []
+for (let i=0;i<order.length;i++) {
+  console.log("key",order[i]);
+  let AP=await AdvertisingPoint.findById(order[i]._id).populate('address').populate('size')
+   element.push({"AP": AP,"count":order[i].data.length});
+    
+  }
+
+  console.log(element);
+
+//  const popular = order.forEach(async (x)=>await AdvertisingPoint.findById(x._id))
+//  console.log("OOORRRDDDEERR",popular);
+
+  return res.status(200).send(element)
+}
 const setAPstatus= async (req, res) => {
 
 
-// const job = schedule.scheduleJob('22 9 * * *',async function (){
+const job = schedule.scheduleJob('22 9 * * *',async function (){
   let date_today= new Date();
   let month_today =date_today.getDate();
   let day_today= date_today.getDate();
@@ -138,10 +159,10 @@ const setAPstatus= async (req, res) => {
   x.AdvertisingPointId.status=false
   })
   
-  // await order.save()
+  await order.save()
  
 
-//});
+});
 
 }
 module.exports = {
@@ -149,5 +170,8 @@ module.exports = {
   getAdvertisingPoint,
   updateAdvertisingPoint,
   deleteAdvertisingPoint,
-  getAllAdvertisingPoint,setAPstatus
+  getPopularyBillBoard,
+  getAllAdvertisingPoint,
+  setAPstatus,
+  
 }

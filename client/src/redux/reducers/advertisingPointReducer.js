@@ -5,7 +5,8 @@ const initialState = {
   advertisingPoint: [],
   street: null,
   size: null,
-  currentAdvertstingPoint:{}
+  currentAdvertstingPoint:{},
+  popularityBB:null
 }
 
 const AdvertisingPoint = {
@@ -29,11 +30,24 @@ addBillboard (state, action) {
     state.advertisingPoint.push(action.payload)
 
 },
-deleteOneAdvertisingPoint (state, action){
+// deleteOneAdvertisingPoint (state, action){
+//     state.advertisingPoint = action.payload
+// },
+setAdvertisingAfterCencel(state, action){
     state.advertisingPoint = action.payload
+
 },
 setCurrentAdvertstingPoint(state, action){
   state.currentAdvertstingPoint = action.payload
+},
+getPopularityBb(state, action){
+  // state.popularityBB = action.payload
+},
+setPopular(state, action){
+  alert("Fd")
+
+  state.popularityBB = action.payload
+
 },
   initialState
 }

@@ -5,8 +5,8 @@
 // // var CanvasJSReact = require('canvasjs.react');
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-//  
-// export default class Graphs extends Component {	
+//
+// export default class Graphs extends Component {
 // 	render() {
 // 		const options = {
 // 			animationEnabled: true,
@@ -40,10 +40,10 @@
 // 				]
 // 			}]
 // 		}
-		
+
 // 		return (
 // 		<div>
-// 			<CanvasJSChart options = {options} 
+// 			<CanvasJSChart options = {options}
 // 				/* onRef={ref => this.chart = ref} */
 // 			/>
 // 			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
@@ -51,5 +51,34 @@
 // 		);
 // 	}
 // }
-//  
+//
 // module.exports = Graphs;
+
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import actions from '../../redux/action'
+
+export default function Graphs (props) {
+  const dispatch = useDispatch()
+  const data = useSelector(state => state)
+  const [popularity, setPopularity] = useState()
+  useEffect(() => {
+    dispatch(actions.getPopularityBb())
+    setPopularity(data.AdvertisingPoint?.popularityBB)
+  }, [data.AdvertisingPoint?.popularityBB])
+  return (
+    <div className=''>
+      {popularity &&
+        popularity.map((p, index) => {
+          return (
+            <>
+              <h2>{p.count}</h2>
+              <h3>{p.AP.address.streetName}</h3>
+              <p>------------------------------------</p>
+            </>
+          )
+        })}
+    </div>
+  )
+}

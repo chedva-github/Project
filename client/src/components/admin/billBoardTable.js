@@ -20,7 +20,7 @@ export default function BillBoardTable (props) {
   }, [])
 
   useEffect( () => {
-    
+    console.log(billboarddata);
     setBillboarddata(data.AdvertisingPoint.advertisingPoint)
    }, [data.AdvertisingPoint?.advertisingPoint])
 
@@ -28,12 +28,12 @@ export default function BillBoardTable (props) {
   const handleEdit = index => {
     setEditshow(index)
   }
-  const handleDelete = index => {
-    dispatch(actions.deleteOneAdvertisingPoint(billboarddata[index]._id))
+  const handleDelete = async index => {
+   await dispatch(actions.deleteOneAdvertisingPoint(billboarddata[index]._id))
   }
   return (
     <>
-      <h2> שלטי חוצות פתח תקווה</h2>
+      {/* <h2> שלטי חוצות בפתח תקווה</h2> */}
 
        <Container>
  
@@ -49,7 +49,7 @@ export default function BillBoardTable (props) {
             </tr>
           </thead>
           <tbody>
-            {billboarddata &&
+            {billboarddata.length > 0 && 
               billboarddata.map((billBoard, index) => {
                 return (
                   <>
@@ -73,7 +73,11 @@ export default function BillBoardTable (props) {
                         </div>
                       </td>
                       <td>{billBoard.price}</td>
+<<<<<<< HEAD
                       {/* <td>{billBoard.status.toString()}</td> */}
+=======
+                      <td>{billBoard.status?.toString()}</td>
+>>>>>>> 78e5f25a919f054fcb8c2d0a3db208898ab1a080
                       <td>{billBoard.size?.sizeName}</td>
                       <td>{billBoard.address?.streetName}</td>
                     </tr>

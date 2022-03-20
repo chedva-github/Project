@@ -42,7 +42,7 @@ export default function Orders() {
             <th>תאריך סיום</th>
             <th>תאריך התחלה </th>
             <th>סוג </th>
-            <th>רחוב</th>
+            {/* <th>רחוב</th> */}
             <th>תמונה</th>
           </tr>
         </thead>
@@ -61,12 +61,12 @@ export default function Orders() {
                         />
                       </div>
                     </td>
-
-                    <td>{order.AdvertisingPointId && order.AdvertisingPointId.address.streetName}</td>
+                    <td>{order.AdvertisingPointId && order.AdvertisingPointId.price}</td>
                     <td>{order.AdvertisingPointId?.status?.toString()}</td>
-                    <td>{order.AdvertisingPointId && order.AdvertisingPointId.size.sizeName}</td>
-                    <td>{order.startDate.split('T')[0]}</td>
                     <td>{order.endDate.split('T')[0]}</td>
+                    <td>{order.startDate.split('T')[0]}</td>
+                    <td>{order.AdvertisingPointId && order.AdvertisingPointId.size.sizeName}</td>
+                    {/* <td>{order.AdvertisingPointId && order.AdvertisingPointId.address.streetName}</td> */}
                     <td><img src={order.img} /></td>
 
                   </tr>

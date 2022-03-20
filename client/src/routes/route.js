@@ -46,6 +46,8 @@ export default function Routers () {
           <Route path='/OrderSuccess' element={<OrderSuccess />} />
           <Route path='/userDetails' element={<UserDetails />} />
           <Route path='/AcceptAdmin' element={<AcceptAdmin />} />
+          <Route path='/Graphs' element={<Graphs />} />
+
         </Routes>
       </Router>
     </>

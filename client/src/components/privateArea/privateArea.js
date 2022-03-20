@@ -30,34 +30,21 @@ export default function PrivateArea() {
   }
   return (
     <>
-      <h1>:אזור אישי</h1>
-     <h3> שלום {data?.user?.currentUser?.name}</h3>
-
-
-
-      {/* {data?.user?.isAdmin?  */}
-      <BillBoardTable />
+      {/* <h1>:אזור אישי</h1> */}
+      <h1> שלטי חוצות בפתח תקווה</h1>
+      {/* <Container> */}
+       {data?.user?.currentUser?.name} שלום
+<br />
       <AddIcon
         id="addResponsible"
         style={{ cursor: 'pointer' }}
         fontSize='small'
         onClick={addBillboards}
-      />
-      {/* : null} */}
+      /> הוספת שלט 
       {show ? <AddBillBoard prop='new' /> : null}
+      <BillBoardTable />
 
-      {/* <table>
-        {data?.user?.userOrders?.map((item,index)=>(
-            <tr key={index} style={{border:'solid black 1px',width:'40%'}}>
-                <td>{data?.streets?.streets?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).address)?.streetName }</td>
-                <td>{item.startDate.split('T')[0]}</td>
-                <td>{item.endDate.split('T')[0]}</td>
-                <td>{data?.size?.size?.find(s=>s._id==data?.AdvertisingPoint?.advertisingPoint?.find(x=>x._id==item.pointId).size)?.sizeName }</td>
-                <td>{item.paymentNum}</td>
-            </tr>
-
-        ))}
-        </table> */}
+     
     </>
   )
 }
