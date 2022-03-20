@@ -64,10 +64,13 @@ function notAccept(e){
               />
               <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
-                  ממתינה לאישור הזמנה ${value._id.slice(4)}
+                 ${value._id.slice(4)}הזמנה   
+
+                  ממתינה לאישורך
+
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                  הזמנת {value.AdvertisingPointId.size.sizeName}
+                   {value.AdvertisingPointId.size.sizeName}
                   {value.startDate.split('T')[0]} בין התאריכים:
                   {value.endDate.split('T')[0]} ל
                 </Typography>
