@@ -63,14 +63,25 @@ export default function Graphs (props) {
   const dispatch = useDispatch()
   const data = useSelector(state => state)
   const [popularity, setPopularity] = useState()
-  useEffect(() => {
+
+  useEffect(()=>{
+    
     dispatch(actions.getPopularityBb())
-    setPopularity(data.AdvertisingPoint?.popularityBB)
+
+  },[])
+  useEffect(() => {
+    if(data.AdvertisingPoint?.popularityBB){
+  let toSort = [...data.AdvertisingPoint.popularityBB]
+         toSort.sort((a, b) => a.count > b.count ? 1 : -1).reverse()
+
+    setPopularity(toSort)
+    }
+
   }, [data.AdvertisingPoint?.popularityBB])
   return (
     <div className=''>
       {popularity &&
-        popularity.map((p, index) => {
+       popularity.map((p, index) => {
           return (
             <>
               <h2>{p.count}</h2>
