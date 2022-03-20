@@ -16,24 +16,6 @@ export default function AcceptAdmin () {
 
   useEffect(() => {
     dispatch(actions.getOrdersAwaitToAccept())
-<<<<<<< HEAD
-    },[]);
-//     useEffect(() => {
-// console.log(data);
-//         },[data.order.awaitToAccept]);
-function accept(val){
-    //alert('fe')
-    dispatch(actions.changeAccept({"accept":"1","orderId":val}))
-}
-function notAccept(e){
-    console.log(e)
-    //alert(e)
-    dispatch(actions.changeAccept({"accept":"0","orderId":e}))
-}
-    return(
-        <>
-        <h1>הזמנות אלו מחכות לאישור</h1>
-=======
   }, [])
   useEffect(() => {
       if(data.order.awaitToAccept)
@@ -50,7 +32,6 @@ function notAccept(e){
   return (
     <>
      {state.length>0 ? (<h1>הזמנות אלו מחכות לאישור</h1>):(<h1>אין הזמנות שמחכות לאישורך כרגע</h1>)}
->>>>>>> 78e5f25a919f054fcb8c2d0a3db208898ab1a080
 
       {state &&
         state.map((value, index) => {

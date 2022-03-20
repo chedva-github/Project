@@ -25,13 +25,7 @@ export default function NavFunc() {
         <li><NavLink exact activeClassName="active" to='/About'>אודותינו</NavLink></li>
 
 
-<<<<<<< HEAD
-        {data?.isAdmin ? (
-          <li ><NavLink exact activeClassName="active" to='/Orders'>Ordersd</NavLink></li>
-        ) : null}
-=======
        
->>>>>>> 78e5f25a919f054fcb8c2d0a3db208898ab1a080
         {isLogin ? <Profil /> : null}
       </ul>
     </>

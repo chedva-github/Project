@@ -115,7 +115,6 @@ export default function Payment(props) {
         <div className='App-payment'>
           {/* <h1> student payment:הסכום לתשלום הוא</h1> */}
           {/* onSubmit={this.handleSubmit} */}
-<<<<<<< HEAD
           <div className='form-payment'>
             <form ref={form} onSubmit={handleSubmit}>
               <Card
@@ -200,86 +199,6 @@ export default function Payment(props) {
                     </button>
                   </div>
                 </div>
-=======
-          <form ref={form} onSubmit={handleSubmit}>
-            <Card
-              number={number}
-              name={name}
-              expiry={expiry}
-              cvc={cvc}
-              focused={focused}
-              callback={handleCallback}
-              sum={sum}
-            />
-            <div className='row'>
-              <div className='form-group col-12'>
-                <input
-                  type='tel'
-                  name='number'
-                  className='form-control'
-                  placeholder='הכנס מספר אשראי'
-                  pattern='[\d| ]{16,22}'
-                  required
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-                <small>Ex.: 36., 37., 41., 51., 60...</small>
-              </div>
-              <div className='form-group col-12'>
-                <input
-                  type='number'
-                  name='sum'
-                  className='form-control'
-                  placeholder='הסכום לתשלום'
-                  value={sum}
-                  // readonly
-                  // onFocus={handleInputFocus}
-                />
-              </div>
-              <div className='form-group col-12'>
-                <input
-                  type='text'
-                  name='name'
-                  className='form-control'
-                  placeholder='שם בעל האשראי'
-                  required
-                  //   disabled={checkSum()}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <div className='col-6 form-group'>
-                <input
-                  type='tel'
-                  name='expiry'
-                  className='form-control'
-                  placeholder='תאריך תפוגה'
-                  pattern='\d\d/\d\d'
-                  required
-                  //   disabled={checkSum()}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <div className='col-6 form-group'>
-                <input
-                  type='tel'
-                  name='cvc'
-                  className='form-control'
-                  placeholder='CVC'
-                  pattern='\d{3,4}'
-                  required
-                  //   disabled={checkSum()}
-                  onChange={handleInputChange}
-                  onFocus={handleInputFocus}
-                />
-              </div>
-              <input type='hidden' name='issuer' value={issuer} />
-              <div className='form-actions col-12'>
-                <button type='submit' className='btn btn-primary btn-block'>
-                  אשור
-                </button>
->>>>>>> 78e5f25a919f054fcb8c2d0a3db208898ab1a080
               </div>
             </form>
           </div>

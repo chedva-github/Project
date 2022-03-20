@@ -147,10 +147,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'DELETE_ONE_ADVERTISING_POINT') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-<<<<<<< HEAD
     //alert('myHead')
-=======
->>>>>>> 78e5f25a919f054fcb8c2d0a3db208898ab1a080
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
@@ -246,10 +243,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'CENCEL_ORDER') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-<<<<<<< HEAD
     //alert('myHead')
-=======
->>>>>>> 78e5f25a919f054fcb8c2d0a3db208898ab1a080
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
