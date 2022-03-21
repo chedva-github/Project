@@ -30,7 +30,7 @@ export default function Login() {
     }
 
     if (data?.currentUser && !data?.isAdmin)
-        navigate('/Private-Area')
+        navigate('/About')
     else
         if (data?.isAdmin)
             navigate('/Orders')
