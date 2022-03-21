@@ -5,7 +5,7 @@
         font-size: 18px;
       } 
   .title{
-    color: #007bff;
+    color: #fae20c;
     font-weight: 800;
     font-size: 40px;
     margin: 10px; 
@@ -17,29 +17,29 @@
   }
 .sub-title{
   font-size: x-large; 
-  color: #007bff;
+  color: #0f1214;
   margin-bottom: 10px;
 }  
   .desc{
     text-align: initial;
     width: 75%;
-    color: #007bff;
+    color: #0a0c0e;
 
   }
   .custom {
     width: 100%;
     height: 200px;
-    background-color: #007bff;
+    background-color: #0f0f0f;
   }
   .custom p{
     font-size: 30px;
-    color: white;
+    color: rgb(196, 193, 38);
   }
 .custom img{
     border-radius: 50%;
     margin: 20px;
     width: 100px;
     height: 100px;
-    border: 2px solid #007bff;
+    border: 2px solid #f0ec0c;
   }
    

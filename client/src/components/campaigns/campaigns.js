@@ -45,6 +45,15 @@ export default function Campains() {
                     </a></div>
                 </div>
             </div> */}
+            <div className="text">
+            <div className="title">קמפיינים</div>
+            <div className="sub-title">
+            <p dir="rtl">במהלך 30 שנות פעילותינו, הוצאנו אל הפועל מספר רב של קמפיינים פרסום חוצות, בסדרי גודל, פריסה ורמת מורכבות שונה.</p>
+            <p dir="rtl">על רשימת לקוחותינו נמנות חברות, רשתות ומותגים מהמובילים והפופולאריים ביותר בישראל.</p>
+            <p dir="rtl">אומרים שאין כמו מראה עיניים ולכן, לא נכביר במילים וניתן לכם פשוט להתרשם מהם:</p>
+            </div>
+            </div>
+            <br/>
             <div className="comp-table">
                 <table align="center" >
                     <tr>
@@ -81,6 +90,24 @@ export default function Campains() {
                         <td align="center">
                             <img src="http://megamedia.co.il/wp-content/uploads/2017/08/%D7%A9%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%A6%D7%95%D7%AA-%D7%A0%D7%AA%D7%A0%D7%99%D7%94-%D7%A4%D7%95%D7%9C%D7%92-600x600.jpg" ></img>
                             <p>Astral</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <img src="http://megamedia.co.il/wp-content/uploads/2017/03/%D7%A9%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%A6%D7%95%D7%AA-118-1.jpg" ></img>
+                            <p>Splendid</p>
+                        </td>
+                        <td align="center">
+                            <img src="http://megamedia.co.il/wp-content/uploads/2017/03/%D7%A9%D7%9C%D7%98%D7%99-%D7%97%D7%95%D7%A6%D7%95%D7%AA-%D7%A7%D7%A0%D7%99%D7%95%D7%9F-%D7%9E%D7%9C%D7%97%D7%94-%D7%93%D7%A8%D7%95%D7%9D1.jpg" ></img>
+                            <p>Gold-Time</p>
+                        </td>
+                        <td align="center">
+                            <img src="http://megamedia.co.il/wp-content/uploads/2017/08/%D7%A9%D7%9C%D7%98-%D7%97%D7%95%D7%A6%D7%95%D7%AA-%D7%97%D7%99%D7%A4%D7%94-%D7%A6%D7%A7-%D7%A4%D7%95%D7%A1%D7%98-1.jpg" ></img>
+                            <p>Audi</p>
+                        </td>
+                        <td align="center">
+                            <img src="http://megamedia.co.il/wp-content/uploads/2017/09/%D7%AA%D7%9C-%D7%90%D7%91%D7%99%D7%91-%D7%90%D7%99%D7%99%D7%9C%D7%95%D7%9F.jpg" ></img>
+                            <p>Snax</p>
                         </td>
                     </tr>
                 </table>
