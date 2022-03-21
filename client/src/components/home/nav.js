@@ -18,7 +18,7 @@ export default function NavFunc() {
   return (
     <>
       <ul className='ul-nav'>
-      <li><NavLink exact activeClassName="active" to='/Customers'>מלקוחותינו</NavLink></li>
+      {/* <li><NavLink exact activeClassName="active" to='/Customers'>מלקוחותינו</NavLink></li> */}
         <li><NavLink exact activeClassName="active" to='/Campains'>קמפיינים</NavLink></li>
         <li><NavLink exact activeClassName="active" to='/Locations'>הזמנת שלט</NavLink></li>
         <li><NavLink exact activeClassName="active" to='/Graphs'>הלוחות החמים👌</NavLink></li>

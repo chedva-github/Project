@@ -50,6 +50,7 @@ router.get('/getOrdersforUser/:userId',orderController.getOrdersforUser)
 router.post('/deleteOrder/:orderId/:userId', orderController.deleteOrder)
 router.get('/getOrdersAwaitToAccept', orderController.getOrdersAwaitToAccept)
 router.post('/changeAccept', orderController.changeAccept)
+router.post('/check_AP_avilable', orderController.check_AP_avilable)
 
 router.post('/uploadImg', uploadImg.uploadImg)
 

@@ -29,9 +29,9 @@ const getOrdersAwaitToAccept = async (req, res) => {
 }
 const createOrder = async (req, res) => {
   console.log('create order', req.body)
-  const avilable = await check_AP_avilable(req.body)
-  if (!avilable)
-    return res.status(401).json({ message: 'שלט תפוס', status: 401 })
+  // const avilable = await check_AP_avilable(req.body)
+  // if (!avilable)
+  //   return res.status(401).json({ message: 'שלט תפוס', status: 401 })
 
   const order = new Order(req.body)
   if (
@@ -54,7 +54,7 @@ const createOrder = async (req, res) => {
   }
   return res.status(403).send('problam')
 }
-async function check_AP_avilable (order) {
+const  check_AP_avilable = async(req,res)=> {
   const startDate = new Date(order.startDate)
   const endDate = new Date(order.endDate)
 
@@ -68,10 +68,12 @@ async function check_AP_avilable (order) {
       (item.startDate <= endDate && item.endDate >= endDate)
     ) {
       available = false
-      return
+        if (!avilable)
+    return res.status(401).json({ message: 'שלט תפוס', status: 401 })
+
     }
   })
-  return available
+  return res.status(200).json({ message: 'שלט pbuh', status: 200 })
 }
 const getOrdersforUser = async (req, res) => {
 
@@ -174,5 +176,6 @@ module.exports = {
   getOrdersforUser,
   deleteOrder,
   getOrdersAwaitToAccept,
-  changeAccept
+  changeAccept,
+  check_AP_avilable
 }

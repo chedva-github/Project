@@ -1,3 +1,44 @@
 .App-payment {
-    padding: 30px;
-  }
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#PaymentForm{
+  width: 500px;
+}
+.form-payment{
+  display: flex;
+  width: 500px;
+  align-items: center;
+}
+.form-control{
+  width: 250px;
+ }
+ .form-control-name{
+   margin-right: 10px;
+  width: 250px;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+ }
+ .row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ .form-control input{
+  align-items: center;
+ }
+ .form-actions button{
+   width: 100px;
+   align-items: center;
+ }
+ .btn-f{
+align-items: center;
+ }
+ .rccs{
+   margin-top: 30px;
+  margin-bottom: 60px;
+
+ }

@@ -51,7 +51,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       console.log('i am  here')
       const res = await axios.get('http://localhost:4000/getAllStreets')
       console.log('res', res.data)
-      alert(res.data)
+     // alert(res.data)
       action.payload = res.data
       return next(action)
     } catch (e) {
@@ -147,6 +147,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'DELETE_ONE_ADVERTISING_POINT') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
+    //alert('myHead')
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
@@ -178,7 +179,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        dispatch({ type: 'SET_STATUS', payload: result.status })
+        // dispatch({ type: 'SET_STATUS', payload: result.status })
         // action.type="setStatus"
         //  action.payload = result.status
         // return next(action)
@@ -242,6 +243,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'CENCEL_ORDER') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
+    //alert('myHead')
     // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
@@ -328,6 +330,30 @@ export const middle = ({ dispatch, getState }) => next => async action => {
     return next(action)
   }
   else if (action.type == 'GET_POPULARITY_BB') {
+    var myHeaders = new Headers()
+    myHeaders.append('Content-Type', 'application/json')
+    console.log(action.payload);
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow',
+    }
+    fetch(
+      `http://localhost:4000/check_AP_avilable`,
+      requestOptions
+    )
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        dispatch({ type: 'SET_STATUS', payload: result.status })
+        
+      return next(action)
+      })
+      .catch(error => console.log('error', error))
+    return next(action)
+  }
+   else if (action.type == 'CHECK_AP_AVILABLE') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
     console.log(action.payload);
