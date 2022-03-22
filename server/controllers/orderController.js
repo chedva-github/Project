@@ -55,11 +55,11 @@ const createOrder = async (req, res) => {
   return res.status(403).send('problam')
 }
 const  check_AP_avilable = async(req,res)=> {
-  const startDate = new Date(order.startDate)
-  const endDate = new Date(order.endDate)
+  const startDate = new Date(req.body.startDate)
+  const endDate = new Date(req.body.endDate)
 
   const ordersByAP = await Order.find({
-    AdvertisingPointId: order.AdvertisingPointId
+    AdvertisingPointId: req.body.AdvertisingPointId
   })
   let available = true
   ordersByAP.forEach((item, index) => {
@@ -67,8 +67,9 @@ const  check_AP_avilable = async(req,res)=> {
       (item.startDate <= startDate && item.endDate >= startDate) ||
       (item.startDate <= endDate && item.endDate >= endDate)
     ) {
-      available = false
-        if (!avilable)
+      console.log("tafus");
+    //  available = false
+    //    if (!avilable)
     return res.status(401).json({ message: 'שלט תפוס', status: 401 })
 
     }

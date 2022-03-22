@@ -31,6 +31,19 @@ export default function Location(props) {
       setArrSize(size1)
     }
   }, [data.size?.size])
+  useEffect(() => {
+    dispatch(action.setVailableToNull())
+alert(data.order.available)
+    if (data.order.available == 200) { navigate('/Payment')}
+    if (data.order.available == 401) {
+      alert('שלט זה תפוס בתאריכם שביקשת')
+      // return navigate('/Locations')
+    }
+    if (data.order.available == 403) {
+      alert(' וודא שהינך מחובר לאתר קרתה בעיה, אנא נסה שנית')
+      // return navigate('/Locations')
+    }
+  }, [data.order.available])
 
   useEffect(() => {
     if (data.streets.streets) {
@@ -42,9 +55,7 @@ export default function Location(props) {
 
   }, [data.streets?.streets])
 
-  const handleChangAddress = () => {
-    // alert('ssd')
-  }
+  
 
   function sortStreet(size) {
     var streetFromAdvertisingPoing = []
@@ -78,9 +89,9 @@ export default function Location(props) {
     )
     console.log('currentAP', currentAP)
     if (currentAP[0]) {
-      dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
+   await   dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
       dispatch(action.checkApAvilable(currentAP[0]))
-      navigate('/orderPage')
+      // navigate('/orderPage')
     }
   }
   const uploadImg = async files => {

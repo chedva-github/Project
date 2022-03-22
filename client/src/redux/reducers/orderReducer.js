@@ -28,12 +28,17 @@ const order = {
     state.orderPrice = action.payload
   },
   setStatus (state, action) {
+    alert("nn")
     state.available = action.payload
   },
   getAllOrders (state, action) {
     state.orders = action.payload
   },
+  setVailableToNull(state, action){
+    alert('setVailableToNull')
+    state.available = null
 
+  },
   setOrdersAfterCencel (state, action) {
     state.orders = action.payload
     

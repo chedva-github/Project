@@ -45,7 +45,7 @@ export default function Login() {
                     <TextField value={password} onChange={(e) => { setPassword(e.target.value) }} className="element" id="outlined-basic" label="סיסמה" variant="outlined" type="password" placeholder="הכנס סיסמה" />
                     <br />
                     <div className='enter'>
-                        <Button type="submit" className="element" variant="contained" color="primary">כניסה </Button>
+                        <Button type="submit" className="element" variant="contained" color="default">כניסה </Button>
 
                     </div>
                     <div className='new-client'>

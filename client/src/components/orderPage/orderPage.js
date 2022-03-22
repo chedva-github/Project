@@ -19,19 +19,7 @@ export default function OrderPage () {
       img:data.order.orderImg
     })
   }, [])
-  useEffect(() => {
-
-    if (data.order.available == 200) return navigate('/OrderSuccess')
-    if (data.order.available == 401) {
-      alert('שלט זה תפוס בתאריכם שביקשת')
-      return navigate('/Locations')
-    }
-    if (data.order.available == 403) {
-      alert(' וודא שהינך מחובר לאתר קרתה בעיה, אנא נסה שנית')
-      return navigate('/Locations')
-    }
-  }, [data.order.available])
-
+ 
   const message = ` ליום ${data.order.orderPrice} המחיר הינו . ${
     data.order.endDate?.toISOString().split('T')[0]
   } -  ל ${data.order.startDate?.toISOString().split('T')[0]}  בין התאריכים:,${

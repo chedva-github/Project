@@ -329,31 +329,34 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .catch(error => console.log('error', error))
     return next(action)
   }
-  else if (action.type == 'GET_POPULARITY_BB') {
+  else if (action.type == 'CHECK_AP_AVILABLE') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
     console.log(action.payload);
+    let raw = JSON.stringify(action.payload)
 
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,
-      redirect: 'follow',
+      // redirect: 'follow',
+      // body:raw
     }
     fetch(
-      `http://localhost:4000/check_AP_avilable`,
+      `http://localhost:4000/checkAvilable`,
       requestOptions
     )
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        dispatch({ type: 'SET_STATUS', payload: result.status })
-        
+        // dispatch({ type: 'SET_AVILABLE', payload: result})
+                dispatch({ type: 'SET_STATUS', payload: result.status })
+
       return next(action)
       })
       .catch(error => console.log('error', error))
     return next(action)
   }
-   else if (action.type == 'CHECK_AP_AVILABLE') {
+   else if (action.type == 'GET_POPULARITY_BB') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
     console.log(action.payload);

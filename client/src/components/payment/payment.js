@@ -90,6 +90,7 @@ export default function Payment(props) {
     // dispatch(actions.createRentToUser(u))
     // navigate('/Private-Area')
     dispatch(actions.addOrder(createOrderObj))
+    navigate('/OrderSuccess')
   }
 
   const handleInputChange = ({ target }) => {
