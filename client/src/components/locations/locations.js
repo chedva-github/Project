@@ -32,7 +32,7 @@ export default function Location (props) {
   }, [data.size?.size])
   useEffect(() => {
     dispatch(action.setVailableToNull())
-    alert(data.order.available)
+    //alert(data.order.available)
     if (data.order.available == 200) {
       navigate('/Payment')
     }
@@ -92,7 +92,7 @@ export default function Location (props) {
     }
   }
   const uploadImg = async files => {
-    alert(files.target.value)
+    //alert(files.target.value)
   }
   return (
     <div className='location-container'>

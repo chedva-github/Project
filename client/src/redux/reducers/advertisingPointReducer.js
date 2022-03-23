@@ -44,7 +44,7 @@ getPopularityBb(state, action){
   // state.popularityBB = action.payload
 },
 setPopular(state, action){
-  alert("Fd")
+  //alert("Fd")
 
   state.popularityBB = action.payload
 

@@ -22,7 +22,7 @@ export default function AcceptAdmin () {
     setState(data.order.awaitToAccept)
   }, [data.order.awaitToAccept])
   function accept (val) {
-    alert('fe')
+    //alert('fe')
     console.log(val)
     dispatch(actions.changeAccept({ accept: '1', orderId: val }))
   }
