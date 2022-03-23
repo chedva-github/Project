@@ -16,6 +16,10 @@ export default function Location (props) {
   const [arrSize, setArrSize] = useState([])
   const [arrStreet, setArrStreet] = useState([])
   const [date, setDate] = useState()
+  const [price, setPrice] = useState(null)
+
+  const [priceshow, setPriceshow] = useState(false)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -65,17 +69,26 @@ export default function Location (props) {
     console.log(streetFromAdvertisingPoing)
     setArrStreet(streetFromAdvertisingPoing)
   }
+  function priceLable(e){
+    setPriceshow(true)
+  }
+  
   function sortSize (street) {
     var sizeFromAdvertisingPoing = []
+    var pri 
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.address?.streetName == street) {
         dispatch(action.setStreet(x.address))
         dispatch(action.setPrice(x.price))
+        setPrice(x.price)
+
+      pri=x.price
         sizeFromAdvertisingPoing.push(x.size.sizeName)
       }
     })
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
+    
   }
   async function submit () {
     const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
@@ -85,6 +98,8 @@ export default function Location (props) {
     )
     console.log('currentAP', currentAP)
     if (currentAP[0]) {
+      
+
       await dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
  
       dispatch(action.checkApAvilable())
@@ -130,6 +145,7 @@ export default function Location (props) {
       <input
         list='ice2'
         onChange={e => sortStreet(e.target.value)}
+        onBlur={priceLable}
         defaultValue={
           data?.size?.size?.find(x => x._id == data?.AdvertisingPoint?.size)
             ?.sizeName
@@ -147,7 +163,9 @@ export default function Location (props) {
 
       <UploadImg />
       <br />
-
+{priceshow?
+<lable>{price}      המחיר לשלט הינו: 
+</lable>: null}
       <button
         className='btn-location'
         //  disabled={!street || !date || !size}
