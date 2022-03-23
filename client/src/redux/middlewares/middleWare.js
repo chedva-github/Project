@@ -333,18 +333,17 @@ export const middle = ({ dispatch, getState }) => next => async action => {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
     console.log(action.payload);
-    let raw = JSON.stringify(action.payload)
-
+let obj={advertisingPointId:getState().AdvertisingPoint.currentAdvertstingPoint._id,
+startDate:getState().order.startDate,
+endDate:getState().order.endDate
+}
     var requestOptions = {
-      method: 'GET',
+      method: 'POST',
       headers: myHeaders,
-      // redirect: 'follow',
-      // body:raw
+      body:JSON.stringify(obj),
+       redirect: 'follow',
     }
-    fetch(
-      `http://localhost:4000/checkAvilable`,
-      requestOptions
-    )
+    fetch(`http://localhost:4000/checkAvilable`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result)

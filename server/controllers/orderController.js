@@ -57,23 +57,26 @@ const createOrder = async (req, res) => {
 const  check_AP_avilable = async(req,res)=> {
   const startDate = new Date(req.body.startDate)
   const endDate = new Date(req.body.endDate)
+  console.log("stttttttttttttttt",req.body);
 
   const ordersByAP = await Order.find({
-    AdvertisingPointId: req.body.AdvertisingPointId
+    AdvertisingPointId: req.body.advertisingPointId
   })
-  let available = true
+  var available = true
   ordersByAP.forEach((item, index) => {
     if (
       (item.startDate <= startDate && item.endDate >= startDate) ||
       (item.startDate <= endDate && item.endDate >= endDate)
     ) {
       console.log("tafus");
-    //  available = false
-    //    if (!avilable)
-    return res.status(401).json({ message: 'שלט תפוס', status: 401 })
-
+     available = false
+     return
+      
     }
   })
+  if (!available)
+  return res.status(401).json({ message: 'שלט תפוס', status: 401 })
+else
   return res.status(200).json({ message: 'שלט pbuh', status: 200 })
 }
 const getOrdersforUser = async (req, res) => {

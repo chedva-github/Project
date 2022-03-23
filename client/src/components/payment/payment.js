@@ -49,12 +49,7 @@ export default function Payment(props) {
 
   useEffect(() => {
     setSum(data.AdvertisingPoint.currentAdvertstingPoint.price)
-    // data?.AdvertisingPoint?.advertisingPoint.find(
-    //   x =>
-    //     x.address ==
-    //     data?.streets?.streets.find(s => s.streetName == street)._id
-    // )?.basicPriceWeek
-    //)
+
     setCreateOrderObj({
       userId: data.user.currentUser?._id,
       AdvertisingPointId: data.AdvertisingPoint.currentAdvertstingPoint._id,
@@ -77,18 +72,7 @@ export default function Payment(props) {
 
   const handleSubmit = event => {
     event.preventDefault()
-    // let u = {}
-    // u.userId = data?.user?.currentUser
-    // u.paymentNum = sum
-    // u.endDate = date
-    // u.startDate = date
-    // u.pointId = data?.AdvertisingPoint?.advertisingPoint.find(
-    //   x =>
-    //     x.address ==
-    //     data?.streets?.streets.find(s => s.streetName == street)._id
-    // )?._id
-    // dispatch(actions.createRentToUser(u))
-    // navigate('/Private-Area')
+   
     dispatch(actions.addOrder(createOrderObj))
     navigate('/OrderSuccess')
   }

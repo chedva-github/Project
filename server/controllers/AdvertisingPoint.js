@@ -144,26 +144,38 @@ for (let i=0;i<order.length;i++) {
 const setAPstatus= async (req, res) => {
 
 
-const job = schedule.scheduleJob('22 9 * * *',async function (){
-  let date_today= new Date();
-  let month_today =date_today.getDate();
-  let day_today= date_today.getDate();
-  let year_today = date_today.getFullYear()
+ const job = schedule.scheduleJob('1 0 * * *',async function (){
+  const date_today= new Date();
+  const month_today =date_today.getMonth();
+  const day_today= date_today.getDate();
+  const year_today = date_today.getFullYear()
   console.log('function work every 12 on night');
-  const order = await Order.find().populate('AdvertisingPointId')
-    order.forEach(x => {
+ // const order = await 
+  Order.find().then(order=> 
+    
+    order.forEach(async x => {
   
-  if(x.startDate&&(x.startDate).getDate()==month_today&&(x.startDate).getMonth()==month_today&&(x.startDate).getFullYear()==year_today)
-  x.AdvertisingPointId.staus=true
-  if(x.endDate&&(x.endDate).getDate()==month_today&&(x.endDate).getMonth()==month_today&&(x.endDate).getFullYear()==year_today)
-  x.AdvertisingPointId.status=false
+  if(x.startDate&&(x.startDate).getDate()==day_today&&(x.startDate).getMonth()==month_today&&(x.startDate).getFullYear()==year_today)
+  { 
+    // x.AdvertisingPointId.staus=true
+    console.log(x);
+    updateone(x.AdvertisingPointId.toString(),true)
+    //  await x.save(order)
+
+  }
+  if(x.endDate&&(x.endDate).getDate()==month_today&&(x.endDate).getMonth()==month_today&&(x.endDate).getFullYear()==year_today){
+    updateone(x.AdvertisingPointId.toString(),false)
+ await order.save()
+  }
   })
   
-  await order.save()
- 
-
+  )
 });
 
+}
+function updateone(id,stat){
+  AdvertisingPoint.updateOne({ _id: id },{$set : {'status' : stat }}).then(x=>
+    console.log(x))
 }
 module.exports = {
   createUAdvertisingPoint,

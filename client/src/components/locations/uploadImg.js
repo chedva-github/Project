@@ -12,9 +12,9 @@ export default function UploadImg(props) {
 
 
     function onFormSubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const formData = new FormData();
-        formData.append('myImage', file);
+        formData.append('myImage', e);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -31,15 +31,17 @@ export default function UploadImg(props) {
     }
     function onChange(e) {
         setFile(e.target.files[0]);
+        onFormSubmit(e.target.files[0])
+
     }
 
     return (
-        <form className='img-ads' onSubmit={onFormSubmit}>
+        // <form className='img-ads' onSubmit={onFormSubmit}>
             <div className="btn-save">
                 <input type="file" name="myImage" onChange={onChange} />  העלאת תמונה לשלט
-                <button type="submit" className='btn-location-save'>שמור</button>
+                {/* <button type="submit" className='btn-location-save'>שמור</button> */}
             </div>
-        </form>
+        // </form>
     )
 
 }

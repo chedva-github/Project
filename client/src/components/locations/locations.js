@@ -10,7 +10,7 @@ import './locations.css'
 import action from '../../redux/action'
 import UploadImg from './uploadImg'
 import DateRange from './datePicker'
-export default function Location(props) {
+export default function Location (props) {
   const dispatch = useDispatch()
   const data = useSelector(state => state)
   const [arrSize, setArrSize] = useState([])
@@ -25,19 +25,19 @@ export default function Location(props) {
 
   useEffect(() => {
     if (data.size.size) {
-
       let size1 = data.size.size.map(si => si.sizeName)
-      console.log(size1);
+      console.log(size1)
       setArrSize(size1)
     }
   }, [data.size?.size])
   useEffect(() => {
     dispatch(action.setVailableToNull())
-alert(data.order.available)
-    if (data.order.available == 200) { navigate('/Payment')}
+    alert(data.order.available)
+    if (data.order.available == 200) {
+      navigate('/Payment')
+    }
     if (data.order.available == 401) {
       alert('שלט זה תפוס בתאריכם שביקשת')
-      // return navigate('/Locations')
     }
     if (data.order.available == 403) {
       alert(' וודא שהינך מחובר לאתר קרתה בעיה, אנא נסה שנית')
@@ -50,14 +50,10 @@ alert(data.order.available)
       let streets1 = data.streets.streets.map(street => street.streetName)
       setArrStreet(streets1)
       console.log('sreets1', streets1)
-
     }
-
   }, [data.streets?.streets])
 
-  
-
-  function sortStreet(size) {
+  function sortStreet (size) {
     var streetFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.size.sizeName == size) {
@@ -69,7 +65,7 @@ alert(data.order.available)
     console.log(streetFromAdvertisingPoing)
     setArrStreet(streetFromAdvertisingPoing)
   }
-  function sortSize(street) {
+  function sortSize (street) {
     var sizeFromAdvertisingPoing = []
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.address?.streetName == street) {
@@ -81,7 +77,7 @@ alert(data.order.available)
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
   }
-  async function submit() {
+  async function submit () {
     const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
       x =>
         x.address._id == data.order.orderStreet._id &&
@@ -89,8 +85,9 @@ alert(data.order.available)
     )
     console.log('currentAP', currentAP)
     if (currentAP[0]) {
-   await   dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
-      dispatch(action.checkApAvilable(currentAP[0]))
+      await dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
+ 
+      dispatch(action.checkApAvilable())
       // navigate('/orderPage')
     }
   }
@@ -99,12 +96,9 @@ alert(data.order.available)
   }
   return (
     <div className='location-container'>
-
-
       <div className='map'>
         <MyMapComponent></MyMapComponent>
       </div>
-      {/* <form className='form-loc'> */}
       <br />
       <br />
       <br />
@@ -118,10 +112,10 @@ alert(data.order.available)
         id='ice-cream'
         onChange={e => sortSize(e.target.value)}
         defaultValue={
-          data?.street?.street?.find(x => x._id == data?.AdvertisingPoint?.street)
-            ?.streetName
+          data?.street?.street?.find(
+            x => x._id == data?.AdvertisingPoint?.street
+          )?.streetName
         }
-        
         className='input-loc'
         name='ice-cream'
         placeholder='בחר רחוב'
@@ -158,7 +152,9 @@ alert(data.order.available)
         className='btn-location'
         //  disabled={!street || !date || !size}
         onClick={submit}
-      >לתשלום</button>
+      >
+        לתשלום
+      </button>
       {/* </form> */}
     </div>
   )
