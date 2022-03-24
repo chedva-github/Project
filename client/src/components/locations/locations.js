@@ -36,7 +36,6 @@ export default function Location (props) {
   }, [data.size?.size])
   useEffect(() => {
     dispatch(action.setVailableToNull())
-    alert(data.order.available)
     if (data.order.available == 200) {
       navigate('/Payment')
     }
@@ -45,7 +44,6 @@ export default function Location (props) {
     }
     if (data.order.available == 403) {
       alert(' וודא שהינך מחובר לאתר קרתה בעיה, אנא נסה שנית')
-      // return navigate('/Locations')
     }
   }, [data.order.available])
 
@@ -69,26 +67,25 @@ export default function Location (props) {
     console.log(streetFromAdvertisingPoing)
     setArrStreet(streetFromAdvertisingPoing)
   }
-  function priceLable(e){
+  function priceLable (e) {
     setPriceshow(true)
   }
-  
+
   function sortSize (street) {
     var sizeFromAdvertisingPoing = []
-    var pri 
+    var pri
     data?.AdvertisingPoint?.advertisingPoint.map(x => {
       if (x.address?.streetName == street) {
         dispatch(action.setStreet(x.address))
         dispatch(action.setPrice(x.price))
         setPrice(x.price)
 
-      pri=x.price
+        pri = x.price
         sizeFromAdvertisingPoing.push(x.size.sizeName)
       }
     })
     console.log('sizeFromAdvertisingPoing', sizeFromAdvertisingPoing)
     setArrSize(sizeFromAdvertisingPoing)
-    
   }
   async function submit () {
     const currentAP = await data.AdvertisingPoint.advertisingPoint.filter(
@@ -98,17 +95,12 @@ export default function Location (props) {
     )
     console.log('currentAP', currentAP)
     if (currentAP[0]) {
-      
-
       await dispatch(action.setCurrentAdvertstingPoint(currentAP[0]))
- 
+
       dispatch(action.checkApAvilable())
-      // navigate('/orderPage')
     }
   }
-  const uploadImg = async files => {
-    alert(files.target.value)
-  }
+  const uploadImg = async files => {}
   return (
     <div className='location-container'>
       <div className='map'>
@@ -163,9 +155,7 @@ export default function Location (props) {
 
       <UploadImg />
       <br />
-{priceshow?
-<lable>{price}      המחיר לשלט הינו: 
-</lable>: null}
+      {priceshow ? <lable>{price} המחיר לשלט הינו:</lable> : null}
       <button
         className='btn-location'
         //  disabled={!street || !date || !size}

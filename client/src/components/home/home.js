@@ -7,17 +7,6 @@ import Modal from '@mui/material/Modal';
 import { useNavigate } from 'react-router-dom'
 import { Divider } from '@mui/material';
 
-// const style = {
-//     position: 'absolute',
-//     top: '50%',
-//     left: '50%',
-//     transform: 'translate(-50%, -50%)',
-//     width: 400,
-//     bgcolor: 'background.paper',
-//     border: '2px solid #000',
-//     boxShadow: 24,
-//     p: 4,
-// };
 
 var images = [
     "http://megamedia.co.il/wp-content/uploads/2018/01/Untitled_Panorama2.jpg",
@@ -35,27 +24,13 @@ export default function Home() {
     return (
         <>
             <div className='container-home'>
-                {/* // style={{ backgroundImage: 'url(1.png)'}}> */}
-                {/* <div className='img-back'>
-                    <img src={images[0]} />
-                </div> */}
+              
                 <div className='detailes'>
                     <h2 >תוכן, טכנולוגיה וחדשנות</h2><br />
                     <h2>יוצאים מגבולות המסך</h2><br />
                     <Button className='enter-btn' onClick={() => navigate('/Login')}>צור קשר</Button>
                 </div>
-                {/* <Modal style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    {/* <Box sx={style}> */}
-                {/* <Box className='box'>
-
-                    </Box>
-                </Modal> */}
+     
             </div>
         </>
     )

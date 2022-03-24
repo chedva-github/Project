@@ -18,20 +18,22 @@ export default function AcceptAdmin () {
     dispatch(actions.getOrdersAwaitToAccept())
   }, [])
   useEffect(() => {
-      if(data.order.awaitToAccept)
-    setState(data.order.awaitToAccept)
+    if (data.order.awaitToAccept) setState(data.order.awaitToAccept)
   }, [data.order.awaitToAccept])
   function accept (val) {
-    alert('fe')
     console.log(val)
     dispatch(actions.changeAccept({ accept: '1', orderId: val }))
   }
   function notAccept (val) {
-       dispatch(actions.changeAccept({ accept: '0', orderId: val }))
+    dispatch(actions.changeAccept({ accept: '0', orderId: val }))
   }
   return (
     <>
-     {state.length>0 ? (<h1>הזמנות אלו מחכות לאישור</h1>):(<h1>אין הזמנות שמחכות לאישורך כרגע</h1>)}
+      {state.length > 0 ? (
+        <h1>הזמנות אלו מחכות לאישור</h1>
+      ) : (
+        <h1>אין הזמנות שמחכות לאישורך כרגע</h1>
+      )}
 
       {state &&
         state.map((value, index) => {
@@ -45,13 +47,10 @@ export default function AcceptAdmin () {
               />
               <CardContent>
                 <Typography gutterBottom variant='h5' component='div'>
-                 ${value._id.slice(4)}הזמנה   
-
-                  ממתינה לאישורך
-
+                  ${value._id.slice(4)}הזמנה ממתינה לאישורך
                 </Typography>
                 <Typography variant='body2' color='text.secondary'>
-                   {value.AdvertisingPointId.size.sizeName}
+                  {value.AdvertisingPointId.size.sizeName}
                   {value.startDate.split('T')[0]} בין התאריכים:
                   {value.endDate.split('T')[0]} ל
                 </Typography>

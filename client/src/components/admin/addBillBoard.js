@@ -26,9 +26,7 @@ export default function AddBillboard (props) {
 
     if (props.prop === 'edit') {
       setShow(true)
-
-      // setBillboard(data.AdvertisingPoint.advertisingPoint[props.index])
-      setBillboard({
+     setBillboard({
 
         _id: data.AdvertisingPoint.advertisingPoint[props.index]._id,
         size:
@@ -59,7 +57,6 @@ export default function AddBillboard (props) {
     const value = target.value
     const name = target.name
     setBillboard({ ...billboard, [name]: value })
-    //setState({...state,sld_url: event.target.value})
   }
   const handleChangAddress = (event, value) => {
     setBillboard({ ...billboard, address: value })
@@ -121,17 +118,7 @@ export default function AddBillboard (props) {
               />
              
               <br />
-              {/* <Form.Control
-                name='size'
-                type='string'
-                defaultValue={
-                  props.index
-                    ? data.AdvertisingPoint.advertisingPoint[props.index].size
-                        ?.sizeName
-                    : ''
-                }
-                onChange={handleInputChange}
-              ></Form.Control> */}
+             
 
               <Form.Label>price</Form.Label>
 
@@ -143,20 +130,9 @@ export default function AddBillboard (props) {
                     ? data.AdvertisingPoint?.advertisingPoint[props.index]?.price
                     : ''
                 }
-                // defaultValue={billboard.descraption}
                 onChange={handleInputChange}
               />
-              {/* <Form.Label>status</Form.Label>
-              <Form.Control
-                name='status'
-                type='text'
-                defaultValue={
-                  props.index
-                    ? data.AdvertisingPoint.advertisingPoint[props.index].status
-                    : ''
-                }
-                onChange={handleInputChange}
-              /> */}
+             
             </Form.Group>
           </Form>
         </Modal.Body>

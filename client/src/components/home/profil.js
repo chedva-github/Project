@@ -25,8 +25,6 @@ export default function Profil() {
     handleClose()
     navigate('./')
     window.location.reload()
-
-    // dispatch(actions.logOut())
   }
   const handleEdit = () => {
     navigate('./userDetails')

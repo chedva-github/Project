@@ -47,11 +47,8 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .catch(error => console.log('error', error))
   } else if (action.type == 'GET_ALL_STREETS') {
     try {
-      // debugger;
-      console.log('i am  here')
       const res = await axios.get('http://localhost:4000/getAllStreets')
       console.log('res', res.data)
-     // alert(res.data)
       action.payload = res.data
       return next(action)
     } catch (e) {
@@ -59,7 +56,6 @@ export const middle = ({ dispatch, getState }) => next => async action => {
     }
   } else if (action.type == 'GET_ALL_SIZE') {
     try {
-      // debugger;
       console.log('i am  here')
       const res = await axios.get('http://localhost:4000/getAllSize')
       console.log('res', res.data)
@@ -70,7 +66,6 @@ export const middle = ({ dispatch, getState }) => next => async action => {
     }
   } else if (action.type == 'GET_ALL_ADVERTISING_POINT') {
     try {
-      // debugger;
       console.log('i am  here')
       const res = await axios.get(
         'http://localhost:4000/getAllAdvertisingPoint'
@@ -81,19 +76,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
     } catch (e) {
       console.log('err', e.message)
     }
-  }
-  // else
-  //  if(action.type == 'GET_ALL_ORDERS'){
-  //   axios.get('http://localhost:4000/getAllRentToUser')
-  //   .then(res=>res.data)
-  //   .then(r=>{
-  //     action.payload = r
-  //     return next(action)
-  //   })
-
-  // }
-  else if (action.type == 'GET_ORDER_BY_CUSTOMER_ID') {
-    // debugger
+  } else if (action.type == 'GET_ORDER_BY_CUSTOMER_ID') {
     fetch('http://localhost:4000/getRentToUserByUserId/' + action.payload)
       .then(response => response.json())
       .then(result => {
@@ -147,8 +130,7 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'DELETE_ONE_ADVERTISING_POINT') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    //alert('myHead')
-    // var raw = JSON.stringify(action.payload);
+
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
@@ -179,18 +161,11 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        // dispatch({ type: 'SET_STATUS', payload: result.status })
-        // action.type="setStatus"
-        //  action.payload = result.status
-        // return next(action)
       })
       .catch(error => console.log('error', error))
-  }
-  // addOrder
-  else if (action.type == 'CREATE_RENT_TO_USER') {
+  } else if (action.type == 'CREATE_RENT_TO_USER') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-
     var raw = JSON.stringify(action.payload)
 
     var requestOptions = {
@@ -243,8 +218,6 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'CENCEL_ORDER') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    //alert('myHead')
-    // var raw = JSON.stringify(action.payload);
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
@@ -260,9 +233,6 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       .then(result => {
         console.log(result)
         dispatch({ type: 'SET_ORDERS_AFTER_CENCEL', payload: result })
-
-        //  action.payload = result
-        // return next(action)
       })
       .catch(error => console.log('error', error))
   } else if (action.type == 'UPDATE_USER') {
@@ -303,10 +273,9 @@ export const middle = ({ dispatch, getState }) => next => async action => {
   } else if (action.type == 'CHANGE_ACCEPT') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    alert(action.payload)
-    console.log(action.payload);
+    console.log(action.payload)
     var raw = JSON.stringify(action.payload)
-    console.log(raw);
+    console.log(raw)
 
     var requestOptions = {
       method: 'POST',
@@ -314,71 +283,61 @@ export const middle = ({ dispatch, getState }) => next => async action => {
       redirect: 'follow',
       body: raw
     }
-    fetch(
-      `http://localhost:4000/changeAccept`,
-      requestOptions
-    )
+    fetch(`http://localhost:4000/changeAccept`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result)
         dispatch({ type: 'SET_ORDERS_AFTER_ECCEPT', payload: result._id })
-
-        //  action.payload = result._id
-        // return next(action)
       })
       .catch(error => console.log('error', error))
     return next(action)
-  }
-  else if (action.type == 'CHECK_AP_AVILABLE') {
+  } else if (action.type == 'CHECK_AP_AVILABLE') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    console.log(action.payload);
-let obj={advertisingPointId:getState().AdvertisingPoint.currentAdvertstingPoint._id,
-startDate:getState().order.startDate,
-endDate:getState().order.endDate
-}
+    console.log(action.payload)
+    let obj = {
+      advertisingPointId: getState().AdvertisingPoint.currentAdvertstingPoint
+        ._id,
+      startDate: getState().order.startDate,
+      endDate: getState().order.endDate
+    }
     var requestOptions = {
       method: 'POST',
       headers: myHeaders,
-      body:JSON.stringify(obj),
-       redirect: 'follow',
+      body: JSON.stringify(obj),
+      redirect: 'follow'
     }
     fetch(`http://localhost:4000/checkAvilable`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        // dispatch({ type: 'SET_AVILABLE', payload: result})
-                dispatch({ type: 'SET_STATUS', payload: result.status })
+        dispatch({ type: 'SET_STATUS', payload: result.status })
 
-      return next(action)
+        return next(action)
       })
       .catch(error => console.log('error', error))
     return next(action)
-  }
-   else if (action.type == 'GET_POPULARITY_BB') {
+  } else if (action.type == 'GET_POPULARITY_BB') {
     var myHeaders = new Headers()
     myHeaders.append('Content-Type', 'application/json')
-    console.log(action.payload);
+    console.log(action.payload)
 
     var requestOptions = {
       method: 'GET',
       headers: myHeaders,
-      redirect: 'follow',
+      redirect: 'follow'
     }
-    fetch(
-      `http://localhost:4000/getPopularyBillBoard`,
-      requestOptions
-    )
+    fetch(`http://localhost:4000/getPopularyBillBoard`, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result)
-        dispatch({ type: 'SET_POPULAR', payload: result})
-        
-      return next(action)
+        dispatch({ type: 'SET_POPULAR', payload: result })
+
+        return next(action)
       })
       .catch(error => console.log('error', error))
     return next(action)
   }
-  
+
   return next(action)
 }

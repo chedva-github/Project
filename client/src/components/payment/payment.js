@@ -34,19 +34,7 @@ export default function Payment(props) {
   const date = data.AdvertisingPoint.currentAdvertstingPoint.startDate
   const street = data.AdvertisingPoint.currentAdvertstingPoint.street
   const size = "tuyucux"
-  // useEffect(() => {
-
-  //   if (data.order.available == 200) return navigate('/OrderSuccess')
-  //   if (data.order.available == 401) {
-  //     alert('שלט זה תפוס בתאריכם שביקשת')
-  //     return navigate('/Locations')
-  //   }
-  //   if (data.order.available == 403) {
-  //     alert(' וודא שהינך מחובר לאתר קרתה בעיה, אנא נסה שנית')
-  //     return navigate('/Locations')
-  //   }
-  // }, [data.order.available])
-
+  
   useEffect(() => {
     setSum(data.AdvertisingPoint.currentAdvertstingPoint.price)
 
@@ -93,13 +81,10 @@ export default function Payment(props) {
   }
   return (
     <>
-      {/* <h1>{street}</h1>
-      <h1>{size}</h1>
-      <h1>{date}</h1> */}
+    
       <div id='PaymentForm' key='Payment'>
         <div className='App-payment'>
-          {/* <h1> student payment:הסכום לתשלום הוא</h1> */}
-          {/* onSubmit={this.handleSubmit} */}
+       
           <div className='form-payment'>
             <form ref={form} onSubmit={handleSubmit}>
               <Card
@@ -123,7 +108,6 @@ export default function Payment(props) {
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                   />
-                  {/* <small>Ex.: 36., 37., 41., 51., 60...</small> */}
                 </div>
                 <div className='col-6 form-group'>
                   <input
@@ -146,7 +130,6 @@ export default function Payment(props) {
                     placeholder='CVC'
                     pattern='\d{3,4}'
                     required
-                    //   disabled={checkSum()}
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                   />
@@ -168,7 +151,6 @@ export default function Payment(props) {
                     className='form-control-name'
                     placeholder='שם בעל האשראי'
                     required
-                    //   disabled={checkSum()}
                     onChange={handleInputChange}
                     onFocus={handleInputFocus}
                   />
