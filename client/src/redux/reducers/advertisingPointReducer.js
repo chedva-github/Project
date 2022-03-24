@@ -5,20 +5,19 @@ const initialState = {
   advertisingPoint: [],
   street: null,
   size: null,
-  currentAdvertstingPoint:{},
-  popularityBB:null
+  currentAdvertstingPoint: {},
+  popularityBB: null
 }
 
 const AdvertisingPoint = {
   getAllAdvertisingPoint (state, action) {
-    // debugger
-    console.log('advertisingPointReducer getAllAdvertisingPoint',action.payload)
-
+    console.log(
+      'advertisingPointReducer getAllAdvertisingPoint',
+      action.payload
+    )
     state.advertisingPoint = action.payload
-    // alert(JSON.stringify(state.currentUser))
   },
   setValue (state, action) {
-    // debugger
     state.street = action.payload.street
     state.size = action.payload.size
   },
@@ -26,29 +25,20 @@ const AdvertisingPoint = {
     console.log('advertisingPointReducer')
     state.advertisingPoint = action.payload
   },
-addBillboard (state, action) {
+  addBillboard (state, action) {
     state.advertisingPoint.push(action.payload)
+  },
 
-},
-// deleteOneAdvertisingPoint (state, action){
-//     state.advertisingPoint = action.payload
-// },
-setAdvertisingAfterCencel(state, action){
+  setAdvertisingAfterCencel (state, action) {
     state.advertisingPoint = action.payload
-
-},
-setCurrentAdvertstingPoint(state, action){
-  state.currentAdvertstingPoint = action.payload
-},
-getPopularityBb(state, action){
-  // state.popularityBB = action.payload
-},
-setPopular(state, action){
-  //alert("Fd")
-
-  state.popularityBB = action.payload
-
-},
+  },
+  setCurrentAdvertstingPoint (state, action) {
+    state.currentAdvertstingPoint = action.payload
+  },
+  getPopularityBb (state, action) {},
+  setPopular (state, action) {
+    state.popularityBB = action.payload
+  },
   initialState
 }
 

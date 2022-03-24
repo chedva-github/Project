@@ -28,14 +28,12 @@ const order = {
     state.orderPrice = action.payload
   },
   setStatus (state, action) {
-    //alert("nn")
     state.available = action.payload
   },
   getAllOrders (state, action) {
     state.orders = action.payload
   },
   setVailableToNull(state, action){
-    //alert('setVailableToNull')
     state.available = null
 
   },
@@ -44,8 +42,6 @@ const order = {
     
   },
   setImg (state, action) {
-    //alert(action.payload)
-
     state.orderImg = action.payload
   },
   getOrdersAwaitToAccept (state, action) {

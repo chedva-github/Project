@@ -8,9 +8,7 @@ const initialState = {
 const streets = {
     getAllStreets(state, action) {
         console.log("payload", action.payload)
-        // debugger
-        state.streets = action.payload
-        // alert(JSON.stringify(state.currentUser))
+       state.streets = action.payload
     }
     , initialState
 }

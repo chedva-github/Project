@@ -127,7 +127,7 @@ const getPopularyBillBoard = async (req, res) => {
   const order = await   Order.aggregate([{$group:{_id:"$AdvertisingPointId", data:{$push:"$$ROOT"}}}])
 console.log("OOORRRDDDEERR",order);
 let element = []
-for (let i=0;i<order.length;i++) {
+for (let i=0;i<order.length&&i<3;i++) {
   console.log("key",order[i]);
   let AP=await AdvertisingPoint.findById(order[i]._id).populate('address').populate('size')
    element.push({"AP": AP,"count":order[i].data.length});

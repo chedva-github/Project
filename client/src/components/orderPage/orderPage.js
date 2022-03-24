@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { confirmAlert } from 'react-confirm-alert' // Import
+import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import action from '../../redux/action'
 
@@ -16,10 +16,10 @@ export default function OrderPage () {
       AdvertisingPointId: data.AdvertisingPoint.currentAdvertstingPoint._id,
       startDate: data.order.startDate,
       endDate: data.order.endDate,
-      img:data.order.orderImg
+      img: data.order.orderImg
     })
   }, [])
- 
+
   const message = ` ליום ${data.order.orderPrice} המחיר הינו . ${
     data.order.endDate?.toISOString().split('T')[0]
   } -  ל ${data.order.startDate?.toISOString().split('T')[0]}  בין התאריכים:,${
@@ -32,7 +32,6 @@ export default function OrderPage () {
     buttons: [
       {
         label: 'מאשר',
-        // onClick: () => dispatch(action.addOrder(createOrderObj))
         onClick: () => navigate('/Payment')
       },
       {
@@ -47,24 +46,4 @@ export default function OrderPage () {
       <confirmAlert />
     </div>
   )
-  //props?.location?.state?.street
-  // import React ,{useEffect} from "react";
-  // import {useLocation,useNavigate} from 'react-router-dom'
-  // export default function OrderDetails(props){
-  //     const navigate = useNavigate()
-  //     const {state} = useLocation()
-  //     const {date,size,street} = state
-  //     useEffect(() => {
-
-  //        console.log(state)
-  //     }, []);
-
-  //     return(
-  //         <>
-  //         <h1>רחוב: {street}</h1>
-  //         <h1>גודל: {size}</h1>
-  //         <h1>תאריך: {date}</h1>
-  //         <button onClick={()=>navigate("/Payment",{state:{street:street,size:size,date:date}})}>לתשלום</button>
-  //         </>
-  //     )
 }

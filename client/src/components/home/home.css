@@ -56,7 +56,6 @@ h2{
   width: 100px;
   text-decoration: none;
   color: white;
-  padding: 20px 30px;
   font-weight: bold;
 }
 .ul-nav li :hover{
@@ -64,7 +63,7 @@ h2{
 }
 
 .ul-nav li .active{
-  background-color: white;
+  background-color: rgb(14, 12, 12);
   color: #fbff07;
 }
 

@@ -33,7 +33,6 @@ export default function BillBoardTable (props) {
   }
   return (
     <>
-      {/* <h2> שלטי חוצות בפתח תקווה</h2> */}
 
        <Container>
  
