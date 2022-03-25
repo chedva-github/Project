@@ -1,0 +1,25 @@
+.graph-head{
+    padding: 50px 10px;
+
+}
+.graph{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.graph-item{
+    background-color: black;
+    align-items: center;
+    padding: 20px 15px;
+    border: 3px solid;
+}
+.h2{
+    color: yellow;
+}
+.h1{
+    color: #000;
+    background-color: white;
+    text-align: center;
+    padding: 50px;
+}

@@ -24,7 +24,7 @@ export default function UploadImg(props) {
             .then((response) => {
 
                 dispatch(actions.setImg('http://localhost:4000/' + response.data.path.replace("//", "/")))
-                alert("The file is successfully uploaded");
+                alert("הקובץ נקלט בהצלחה");
             }).catch((error) => {
             });
     }
