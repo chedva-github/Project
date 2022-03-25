@@ -28,6 +28,7 @@ export default function Graphs (props) {
     <div className=''>
       {popularity &&
        popularity.map((p, index) => {
+         if(index>2 )return
           return (
             <>
               <h2>{p.count}</h2>
